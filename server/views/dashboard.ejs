@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/tailwind.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+
+<body onload="startTime()">
+    <div class="absolute text-white flex flex-wrap pt-8" style="top: 0; left: 8rem; width: 91%">
+        <a href="/">
+            <img src="./assets/img/logo/logo_dashboard.png" alt="">
+        </a>
+        <div style="position: absolute; right: 0rem">
+            <div>
+                Logged in as <span id="username"><%= username %></span> | <a href="/logout">Log out</a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="mb-40 py-8 px-16 bg-gray-100 flex flex-wrap" style="border-radius: 5px">
+        <h3 class="heading-tertiary" style="font-weight: 500">
+            Dashboard
+        </h3>
+        <div class="ml-auto px-8 flex flex-wrap" style="background-color: #E1E3EC">
+            <h3>
+
+            </h3>
+            <h3 class="heading-tertiary" style="color: #716ACA">
+                Official Time:&nbsp;
+            </h3>
+            <span id="official-time" style="color: #716ACA"></span>
+        </div>
+    </div>
+
+    <!-- Token Sale Application -->
+    <section class="container mx-auto px-16 py-12 mb-16">
+        <h1 class="heading-primary mb-8">Token Sale Application</h1>
+        <div class="text-center mb-16">
+            <h2 class="heading-secondary">
+                To complete your application, please click the link below.<br>
+                You will be taken off-site to our 3rd-party KYC partner, iComply, and will be asked to set up a new
+                profile.
+            </h2>
+            <p style="color: #5D78FF">
+                At Island Mining, we take your data security seriously. We’ve partnered with iComply to provide an easy,
+                automated,
+                SSL-encrypted KYC process.
+            </p>
+        </div>
+
+        <style>
+            .upload_boxes img {
+                height: 10rem;
+                margin: 2rem auto;
+            }
+        </style>
+
+        <% if(verified === 'false') { %>
+        <form class="flex flex-wrap" action="verifyUser" method="POST" enctype="multipart/form-data">
+            <input type="text" class="hidden" name="username" value="<%= username %>">
+            <div class="flex w-2/3 flex-wrap mx-auto">
+                <div class="w-1/2 px-16 pb-16">
+                    <div class="upload_boxes text-center border-solid border-2 rounded-lg border-gray-500 py-16 px-16">
+                        <h3 class="heading-tertiary">Upload Selfie</h3>
+                        <img class="mx-auto" src="./assets/img/misc/selfie.png" alt="">
+                        <input class="pt-8" type="file" name="filename" required>
+                    </div>
+                </div>
+                <div class="w-1/2 px-16 pb-16">
+                    <div class="upload_boxes text-center border-solid border-2 rounded-lg border-gray-500 py-16 px-16">
+                        <h3 class="heading-tertiary">Upload Passport</h3>
+                        <img class="mx-auto" src="./assets/img/misc/passport.png" alt="">
+                        <input class="pt-8" type="file" name="filename" required>
+                    </div>
+                </div>                
+            </div>
+
+            <div class="w-1/2 px-16">
+                <div class="py-2 w-full flex flex-wrap">
+                    <h3 class="heading-tertiary">
+                        First Name
+                    </h3>
+                    <input name="firstName" class="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2" type="text" placeholder="First Name" required>
+                </div>
+                <div class="py-2 w-full flex flex-wrap">
+                    <h3 class="heading-tertiary">
+                        Last Name
+                    </h3>
+                    <input name="lastName" class="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2" type="text" placeholder="Last Name" required>
+                </div>
+                <div class="py-2 w-full flex flex-wrap">
+                    <h3 class="heading-tertiary">
+                        Address
+                    </h3>
+                    <input name="address" class="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2" type="text" placeholder="Address" required>
+                </div>
+                <div class="py-2 w-full flex flex-wrap">
+                    <h3 class="heading-tertiary">
+                        City
+                    </h3>
+                    <input name="city" class="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2" type="text" placeholder="City" required>
+                </div>
+            </div>
+            <div class="w-1/2 px-16">
+                <div class="py-2 w-full flex flex-wrap">
+                    <h3 class="heading-tertiary">
+                        Phone
+                    </h3>
+                    <input name="phone" class="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2" type="text" placeholder="Phone" required>
+                </div>
+                <div class="py-2 w-full flex flex-wrap">
+                    <h3 class="heading-tertiary">
+                        Citizenship
+                    </h3>
+                    <input name="citizenship" class="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2" type="text" placeholder="Citizenship" required>
+                </div>
+                <div class="py-2 w-full flex flex-wrap">
+                    <h3 class="heading-tertiary">
+                        2nd Citizenship
+                    </h3>
+                    <input name="citizenship_2" class="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2" type="text" placeholder="Secondary Citizenship (optional)">
+                </div>
+                <div class="py-2 w-full flex flex-wrap">
+                    <h3 class="heading-tertiary">
+                        Country of Residency
+                    </h3>
+                    <input name="residency" class="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2" type="text" placeholder="Country of Residency" required>
+                </div>
+            </div>
+            <div class="w-full text-center mt-16">
+                <input class="w-1/3 button" type="submit" value="Submit">
+            </div>
+        </form>
+        <% } %>
+        <!-- 
+        <div class="w-2/3 mx-auto">
+            <h3 class="heading-tertiary">
+                Instructions before you start:
+            </h3>
+            <ul>
+                <li><span class="font-bold">Have your Photo ID ready</span> (drivers license, passport, etc)</li>
+                <li><span class="font-bold">Find a well-lit space.</span> The facial recognition check will require your
+                    camera.</li>
+            </ul>
+
+            <div class="flex flex-wrap px-24 mb-16">
+                <div class="w-1/2">
+                    <h3 class="heading-tertiary">
+                        PC or Mac:
+                    </h3>
+                    <p>
+                        Make sure your webcam is enabled
+                    </p>
+                </div>
+                <div class="w-1/2">
+                    <h3 class="heading-tertiary">
+                        Mobile:
+                    </h3>
+                    <p>
+                        You can use your device’s camera
+                    </p>
+                </div>
+            </div>
+
+            <div class="mb-16 px-8 py-6 border-solid border-2 rounded-lg border-gray-500 shadow-lg flex flex-wrap content-center">
+                <img src="assets/img/logo/iComply_logo.png" alt="">
+                <style>
+                    .signup_icomply > a > h2 {
+                        transition: all .2s;
+                    }
+                    .signup_icomply > a > h2:hover {
+                        color: #14227A;
+                    }
+                </style>
+                <div class="text-center py-8 mx-auto">
+                    <h2 class="heading-secondary">
+                        Begin KYC Registration
+                    </h2>
+                    <form action="/upload-passport" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="filename">
+                        <input type="submit" value="upload">
+                    </form>
+
+                </div>
+
+            </div>
+
+            <div class="flex flex-wrap w-1/2 mx-auto mb-16">
+                <h1 class="heading-tertiary w-1/2">
+                    KYC Status
+                </h1>
+                <% if(verified === true) { %>
+                <div class="alert alert-success font-bold text-center">
+                    Approved!
+                </div>
+                <% } else { %>
+                <div class="alert alert-warning font-bold text-center">
+                    Pending Approval
+                </div>
+                <% } %>
+            </div>
+        </div>
+        -->
+        <div class="flex flex-wrap w-1/2 mx-auto my-16">
+                <h1 class="heading-tertiary w-1/2">
+                    KYC Status
+                </h1>
+            <% if(verified === 'pending') { %>
+            <div class="alert alert-warning font-bold text-center">
+                Pending approval.
+            </div>
+            <% } %>
+            <% if(verified === 'true') { %>
+            <div class="alert alert-success font-bold text-center">
+                Approved!
+            </div>
+            <% } %>
+            <% if(verified === 'false') { %>
+            <div class="alert alert-warning font-bold text-center">
+                Please complete application form.
+            </div>
+            <% } %>
+        </div>
+    </section>
+
+    <!-- Payment -->
+    <section class="container mx-auto px-16 py-12 mb-16">
+        <h1 class="heading-primary mb-8">Payment</h1>
+        <div class="w-2/3 mx-auto">
+            <% if(verified === 'true') { %>
+            <div class="alert alert-success font-bold text-center">
+                You are approved for the token sale!
+            </div>
+            <p class="heading-secondary text-center mb-16">
+                Follow the steps below to purchase MNT. Your tokens will be sent to your wallet shortly after purchase.
+            </p>
+            <% } else { %>
+            <div class="alert alert-warning font-bold text-center">
+                Please complete KYC registration above.
+            </div>
+            <% } %>
+        </div>
+
+
+        <% if(verified === 'true') { %>
+        <div class="flex flex-wrap mb-16 text-center">
+            <div class="w-1/2">
+                <h3 class="heading-tertiary">
+                    Step 1:
+                </h3>
+                <p>
+                    <span class="font-bold">Click to lock in your conversion rate.</span><br>
+                    (Your rate will be locked in for 24 hours)
+                </p>
+            </div>
+            <div class="w-1/2">
+                <form id="lock-in" action="/update" method="POST">
+                    <button class="button 
+                    <% if(isLockedIn) {%>
+                        lockedIn
+                    <% } %>">Lock in conversion rates</button>
+                </form>
+            </div>
+        </div>
+        <div class="flex flex-wrap mb-16">
+            <div class="w-1/4 text-center px-2 flex flex-wrap">
+                <div class="font-bold" style="color: #2185D0">
+                    <% if(isLockedIn) { %>
+                    Locked in price:
+                    <% } else { %>
+                    Market Value:
+                    <% } %>
+                </div>
+                <div class="w-full py-4 border-solid border-2 border-gray-500 rounded-lg shadow-lg px-8">
+                    <img class="mx-auto" src="assets/img/icon/MNT_icon.png" alt="MNT">
+                    <input class="w-2/3 pl-4 mr-4 border-solid border-2 border-gray-500 rounded-lg"
+                        id="MNT-conversion-input" type="number" value="123">
+                    MNT
+                </div>
+            </div>
+
+            <div class="flex flex-wrap w-3/4 pl-24 relative">
+                <div class="absolute" style="left: 2.5rem; top: 7rem; font-size: 2rem">
+                    &#61;
+                </div>
+                <div class="w-1/3 text-center px-2">
+                    <div style="color: #2185D0">
+                        <img class="crypto_icon" src="assets/img/icon/BTC_icon.png" alt="">
+                        <strong>BTC</strong> $
+                        <% if(isLockedIn) { %>
+                        <%= lockedInPrices['BTC'] %>
+                        <% } else { %>
+                        <%= +(Math.round(prices['BTC'] + "e+2")  + "e-2") %>
+                        <% } %><span class="hidden"
+                            id="BTC-price"><%= +(Math.round(prices['BTC'] + "e+2")  + "e-2") %></span>
+                    </div>
+                    <div class="py-4 border-solid border-2 border-gray-500 rounded-lg shadow-lg">
+                        <img class="mx-auto" src="assets/img/icon/BTC_icon.png" alt="BTC">
+                        <span id="MNT-to-BTC">0.00000624</span> BTC
+                    </div>
+                </div>
+                <div class="w-1/3 text-center px-2">
+                    <div style="color: #2185D0">
+                        <img class="crypto_icon" src="assets/img/icon/ETH_icon.png" alt="">
+                        <strong>ETH</strong> $
+                        <% if(isLockedIn) { %>
+                        <%= lockedInPrices['ETH'] %>
+                        <% } else { %>
+                        <%= +(Math.round(prices['ETH'] + "e+2")  + "e-2") %>
+                        <% } %><span class="hidden"
+                            id="ETH-price"><%= +(Math.round(prices['ETH'] + "e+2")  + "e-2") %></span>
+                    </div>
+
+                    <div class="py-4 border-solid border-2 border-gray-500 rounded-lg shadow-lg">
+                        <img class="mx-auto" src="assets/img/icon/ETH_icon.png" alt="ETH">
+                        <span id="MNT-to-ETH">0.0004234</span> ETH
+                    </div>
+                </div>
+                <div class="w-1/3 text-center px-2">
+                    <div style="color: #2185D0">
+                        <img class="crypto_icon" src="assets/img/icon/LTC_icon.png" alt="">
+                        <strong>LTC</strong> $
+                        <% if(isLockedIn) { %>
+                        <%= lockedInPrices['LTC'] %>
+                        <% } else { %>
+                        <%= +(Math.round(prices['LTC'] + "e+2")  + "e-2") %>
+                        <% } %><span class="hidden"
+                            id="LTC-price"><%= +(Math.round(prices['LTC'] + "e+2")  + "e-2") %></span>
+                    </div>
+
+                    <div class="py-4 border-solid border-2 border-gray-500 rounded-lg shadow-lg">
+                        <img class="mx-auto" src="assets/img/icon/LTC_icon.png" alt="LTC">
+                        <span id="MNT-to-LTC">0.001375</span> LTC
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% if(isLockedIn) { %>
+        <div class="mx-auto w-2/3 alert alert-success font-bold text-center">
+            Your conversion rates will be locked in until <%= lockedInPrices['expiryDate'] %> !
+        </div>
+        <% } %>
+
+
+        <div class="text-center mb-16">
+            <h3 class="heading-tertiary">
+                Step 2:
+            </h3>
+            <p>
+                Send funds to any of the following addresses to complete your purchase of MNT
+            </p>
+        </div>
+        <div class="w-2/3 mx-auto mb-16">
+            <div class="mb-8 flex flex-wrap">
+                <div class="w-1/4 flex flex-wrap align-items">
+                    <img class="object-contain" src="assets/img/icon/ETH_icon.png" alt="Ethereum">
+                    <h3 style="color: #5F5F5F" class="font-bold py-8 pl-4">Ethereum</h3>
+                </div>
+                <div class="w-3/4 text-center">
+                    <p id="ethereumAddress" class="heading-tertiary">0x5c43fF73e3352BF06ef3c975eced44190A670A1f</p>
+                    <button class="copyText" onclick="copyText('ethereumAddress')">Click here to copy to
+                        clipboard</button>
+                </div>
+            </div>
+            <div class="mb-8 flex flex-wrap">
+                <div class="w-1/4 flex flex-wrap">
+                    <img class="object-contain" src="assets/img/icon/BTC_icon.png" alt="Bitcoin">
+                    <h3 style="color: #5F5F5F" class="font-bold py-8 pl-4">Bitcoin</h3>
+                </div>
+                <div class="w-3/4 text-center">
+                    <% if(!bitcoinAddress) { %>
+                    <p class="heading-tertiary">
+                        Error fetching bitcoin address, please contact support
+                    </p>
+                    <% } else { %>
+                    <p class="heading-tertiary" id="bitcoinAddress">
+                        <%= bitcoinAddress %>
+                    </p>
+                    <% } %>
+                    <button class="copyText" onclick="copyText('bitcoinAddress')">Click here to copy to
+                        clipboard</button>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-center mx-auto">
+            <span class="font-bold">Important:</span> Make sure your conversion rates are locked in before sending
+            funds. If you send funds without a locked-in
+            rate, we will simply use the current spot price to calculate your MNT.
+            If for any reason you have not received your tokens in 7 days, please contact support@islandmining.io
+        </p>
+        <% } %>
+    </section>
+
+    <% if(affiliatePermissions === true) { %>
+    <!-- Affiliate Program -->
+    <section class="container mx-auto px-16 py-12 mb-16">
+        <h1 class="heading-primary mb-8">Affiliate Program</h1>
+        <p class="text-center mb-16">
+            Use your referral link to share the Mining Coin Token Sale with your friends and colleagues. You will
+            receive a reward
+            in MNT for first and second tier referrals.
+            (i.e. if your friend signs up with your link, you will also receive a reward for MNT purchases referred by
+            your friend)
+        </p>
+
+        <div class="flex flex-wrap w-1/2 mx-auto mb-16">
+            <h3 class="heading-tertiary w-1/3">
+                Your referral link
+            </h3>
+            <div class="text-center w-2/3">
+                <div id="referralAddress" class="border-solid border-2 border-gray-500 rounded-lg">
+                    https://www.islandmining.io/ref/<%= referralAddress %>
+                </div>
+                <button class="copyText" onclick="copyText('referralAddress')">Click here to copy to clipboard</button>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap w-1/2 mx-auto">
+            <h3 class="heading-tertiary w-1/3 mb-16">
+                Share link
+            </h3>
+            <div class="flex flex-wrap w-2/3">
+                <i class="fab fa-facebook-messenger"></i>
+                <i class="fab fa-facebook-square"></i>
+                <i class="fab fa-twitter-square"></i>
+                <i class="fab fa-tumblr-square"></i>
+                <i class="fab fa-google-plus-square"></i>
+                <i class="fab fa-weixin"></i>
+                <i class="fab fa-skype"></i>
+                <i class="fab fa-line"></i>
+                <i class="fab fa-weibo"></i>
+                <i class="fas fa-sms"></i>
+                <i class="fab fa-linkedin"></i>
+            </div>
+        </div>
+
+        <h3 class="heading-tertiary">
+            Reward table(MNT)
+        </h3>
+        <table class="mx-auto mb-16">
+            <tr>
+                <th></th>
+                <th>up to $10,000</th>
+                <th>$10,000 - $50,000</th>
+                <th>> $50,000</th>
+            </tr>
+            <tr>
+                <td>1st tier referral:</td>
+                <td>
+                    <div style="color: #5F5F5F"
+                        class="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg">
+                        5.0%
+                    </div>
+                </td>
+                <td>
+                    <div style="color: #5F5F5F"
+                        class="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg">
+                        6.5%
+                    </div>
+                </td>
+                <td>
+                    <div style="color: #5F5F5F"
+                        class="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg">
+                        8.0%
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>2nd tier referral:</td>
+                <td>
+                    <div style="color: #5F5F5F"
+                        class="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg">
+                        1.0%
+                    </div>
+                </td>
+                <td>
+                    <div style="color: #5F5F5F"
+                        class="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg">
+                        1.5%
+                    </div>
+                </td>
+                <td>
+                    <div style="color: #5F5F5F"
+                        class="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg">
+                        2.0%
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <h3 class="heading-tertiary">
+            Your referrals
+        </h3>
+        <table class="mx-auto mb-16">
+            <tr>
+                <th></th>
+                <th># referred</th>
+                <th>total MNT purchased</th>
+                <th>your current reward</th>
+            </tr>
+            <tr>
+                <td>1st tier referral:</td>
+                <td>
+                    <div style="color: #5F5F5F"
+                        class="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg">
+                        <%= referrals %>
+                    </div>
+                </td>
+                <td>
+                    <div style="color: #5F5F5F"
+                        class="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg">
+                        120,400 MNT
+                    </div>
+                </td>
+                <td>
+                    <div style="color: #009231"
+                        class="font-bold border-solid border-2 border-green-500 shadow-md rounded-lg">
+                        <span id="current-awards--tier-1">6,020</span> MNT
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>2nd tier referral:</td>
+                <td>
+                    <div style="color: #5F5F5F"
+                        class="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg">
+                        <%= referrals %>
+                    </div>
+                </td>
+                <td>
+                    <div style="color: #5F5F5F"
+                        class="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg">
+                        4,300,620 MNT
+                    </div>
+                </td>
+                <td>
+                    <div style="color: #009231"
+                        class="font-bold border-solid border-2 border-green-500 shadow-md rounded-lg">
+                        <span id="current-awards--tier-2">43,007</span> MNT
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="text-center font-bold">
+            Total Affiliate Rewards <span
+                class="border-solid border-2 border-green-500 shadow-md rounded-lg px-4 py-4 ml-4"
+                style="color:#009231"><span id="totalAffiliateRewards">49,027</span> MNT</span>
+        </div>
+
+    </section>
+    <% } %>
+
+    <!-- Registration Info -->
+    <section class="container mx-auto px-16 py-12 mb-16">
+        <h1 class="heading-primary mb-8">Your Registration Info</h1>
+        <div class="flex flex-wrap w-2/3 mx-auto mb-16">
+            <div class="w-1/2">
+                First Name
+            </div>
+            <div class="w-1/2">
+                <%= userInformation['FirstName'] %>
+            </div>
+            <div class="w-1/2">
+                Last Name
+            </div>
+            <div class="w-1/2">
+                <%= userInformation['LastName'] %>
+            </div>
+            <div class="w-1/2">
+                Email Address
+            </div>
+            <div class="w-1/2">
+                <%= userInformation['Email'] %>
+            </div>
+            <div class="w-1/2">
+                Street Address
+            </div>
+            <div class="w-1/2">
+                <%= userInformation['Address'] %>
+            </div>
+            <div class="w-1/2">
+                City
+            </div>
+            <div class="w-1/2">
+                <%= userInformation['City'] %>
+            </div>
+            <div class="w-1/2">
+                Country
+            </div>
+            <div class="w-1/2">
+                <%= userInformation['Country'] %>
+            </div>
+            <div class="w-1/2">
+                KYC Document Type
+            </div>
+            <div class="w-1/2">
+                <%= userInformation['DocumentType'] %>
+            </div>
+            <div class="w-1/2">
+                Ethereum Wallet Address
+            </div>
+            <div class="w-1/2">
+                -
+            </div>
+        </div>
+
+        <p class="text-center heading-tertiary">
+            If any of the above information is incorrect, please contact support at support@islandmining.io
+        </p>
+    </section>
+    <div class="py-4">
+        &nbsp;
+    </div>
+
+    <script src="assets/js/dashboard.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,367 @@
+.appearBottom {
+  -webkit-animation-name: appearBottom;
+  animation-name: appearBottom;
+  animation-duration: 1.6s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.appearBottomText .split-unit .split-inner {
+  -webkit-animation-name: appearBottomText;
+  animation-name: appearBottomText;
+  animation-duration: 1.6s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.appearHeader .animateHeaders {
+  -webkit-animation-name: appearHeader;
+  animation-name: appearHeader;
+  animation-duration: 1.6s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.appearText .animateHeaders {
+  -webkit-animation-name: appearHeader;
+  animation-name: appearHeader;
+  animation-duration: 1.6s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.flipCard .one-roadmap-item {
+  -webkit-animation-name: flipCard;
+  animation-name: flipCard;
+  animation-duration: 1.2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.flipCard .one-roadmap-bar:after,
+.flipCard .one-roadmap-bar:before {
+  -webkit-animation-name: roadMapBar;
+  animation-name: roadMapBar;
+  animation-duration: 0.45s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.one-roadmap-mark {
+    opacity: 1 !important;
+}
+.main-footer a {
+    color: white !important;
+}
+
+.appearBottomText .split-unit:nth-child(1) .split-inner {
+  animation-delay: 0.0666666667s;
+}
+.appearBottomText .split-unit:nth-child(2) .split-inner {
+  animation-delay: 0.2s;
+}
+.appearBottomText .split-unit:nth-child(3) .split-inner {
+  animation-delay: 0.3333333333s;
+}
+
+.appearBottomCol .lqd-column {
+  -webkit-animation-name: flipCard;
+  animation-name: flipCard;
+  animation-duration: 1.2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.appearBottomCol .lqd-column:nth-child(1) {
+  animation-delay: 0.0666666667s;
+}
+.appearBottomCol .lqd-column:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.appearBottomCol .lqd-column:nth-child(3) {
+  animation-delay: 0.3333333333s;
+}
+
+.appearHeader .animateHeaders:nth-child(1) {
+  animation-delay: 0.0666666667;
+}
+
+.appearHeader .animateHeaders:nth-child(2) {
+  animation-delay: 0.3333333333s;
+}
+
+.appearText .animateHeaders:nth-child(1) {
+  animation-delay: 0.5999999999s;
+}
+
+.appearText .animateHeaders:nth-child(2) {
+  animation-delay: 0.8666666665s;
+}
+
+.flipCard .one-roadmap-item:nth-child(1) {
+  animation-delay: 0.0666666667s;
+}
+
+.flipCard .one-roadmap-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.flipCard .one-roadmap-item:nth-child(3) {
+  animation-delay: 0.3333333333s;
+}
+
+.flipCard .one-roadmap-item:nth-child(4) {
+  animation-delay: 0.4666666666s;
+}
+
+.flipCard .one-roadmap-item:nth-child(5) {
+  animation-delay: 0.5999999999s;
+}
+
+.flipCard .one-roadmap-item:nth-child(6) {
+  animation-delay: 0.7333333332s;
+}
+
+.flipCard .one-roadmap-item:nth-child(7) {
+  animation-delay: 0.8666666665s;
+}
+
+.flipCard .one-roadmap-item:nth-child(8) {
+  animation-delay: 0.9999999998s;
+}
+
+.flipCard .one-roadmap-item:nth-child(9) {
+  animation-delay: 1.1333333331s;
+}
+
+.flipCard .one-roadmap-item:nth-child(1) .one-roadmap-bar:before {
+  animation-delay: 0.2631578947s;
+}
+
+.flipCard .one-roadmap-item:nth-child(2) .one-roadmap-bar:before {
+  animation-delay: 0.5263157895s;
+}
+
+.flipCard .one-roadmap-item:nth-child(3) .one-roadmap-bar:before {
+  animation-delay: 0.7894736842s;
+}
+
+.flipCard .one-roadmap-item:nth-child(4) .one-roadmap-bar:before {
+  animation-delay: 1.0526315789s;
+}
+.flipCard .one-roadmap-item:nth-child(5) .one-roadmap-bar:before {
+  animation-delay: 1.3157894737s;
+}
+
+.flipCard .one-roadmap-item:nth-child(6) .one-roadmap-bar:before {
+  animation-delay: 1.5789473684s;
+}
+
+.flipCard .one-roadmap-item:nth-child(7) .one-roadmap-bar:before {
+  animation-delay: 1.8421052632s;
+}
+
+.flipCard .one-roadmap-item:nth-child(8) .one-roadmap-bar:before {
+  animation-delay: 2.1052631579s;
+}
+
+.flipCard .one-roadmap-item:nth-child(9) .one-roadmap-bar:before {
+  animation-delay: 2.3684210526s;
+}
+
+.flipCard .one-roadmap-item:nth-child(1) .one-roadmap-bar:after) {
+  animation-delay: 0.2816901408s;
+}
+
+.flipCard .one-roadmap-item:nth-child(2) .one-roadmap-bar:after {
+  animation-delay: 0.5633802817s;
+}
+
+.flipCard .one-roadmap-item:nth-child(3) .one-roadmap-bar:after {
+  animation-delay: 0.8450704225s;
+}
+
+.flipCard .one-roadmap-item:nth-child(4) .one-roadmap-bar:after {
+  animation-delay: 1.1267605634s;
+}
+.flipCard .one-roadmap-item:nth-child(5) .one-roadmap-bar:after {
+  animation-delay: 1.4084507042s;
+}
+
+.flipCard .one-roadmap-item:nth-child(6) .one-roadmap-bar:after {
+  animation-delay: 1.6901408451s;
+}
+
+.flipCard .one-roadmap-item:nth-child(7) .one-roadmap-bar:after {
+  animation-delay: 1.9718309859s;
+}
+
+.flipCard .one-roadmap-item:nth-child(8) .one-roadmap-bar:after {
+  animation-delay: 2.5352112676s;
+}
+
+.flipCard .one-roadmap-item:nth-child(9) .one-roadmap-bar:after {
+  animation-delay: 2.2535211268s;
+}
+.split-txt {
+  line-height:1.5;
+}
+
+
+
+@-webkit-keyframes appearBottom {
+  from {
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Standard syntax */
+@keyframes appearBottom {
+  from {
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes appearBottomText {
+  from {
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes appearBottomText {
+  from {
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes appearBottomCol {
+  from {
+    -webkit-transform: translateY(100px);
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes appearBottomCol {
+  from {
+    -webkit-transform: translateY(100px);
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes appearHeader {
+  from {
+    -webkit-transform: translateY(30px);
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes appearHeader {
+  from {
+    -webkit-transform: translateY(30px);
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes flipCard {
+  from {
+    -webkit-transform: translateY(50px) translateZ(-150px) rotateX(-95deg);
+    transform: translateY(50px) translateZ(-150px) rotateX(-95deg);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0) translateZ(0) rotateX(0deg);
+    transform: translateY(0) translateZ(0) rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes flipCard {
+  from {
+    -webkit-transform: translateY(50px) translateZ(-150px) rotateX(-95deg);
+    transform: translateY(50px) translateZ(-150px) rotateX(-95deg);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0) translateZ(0) rotateX(0deg);
+    transform: translateY(0) translateZ(0) rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes roadMapBar {
+  from {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes roadMapBar {
+  from {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+}

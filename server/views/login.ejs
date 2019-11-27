@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign in to Island Mining</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/tailwind.css">
+    <link rel="stylesheet" href="assets/css/login.css">
+</head>
+<body>
+    <div class="container mx-auto">
+        <% if(typeof message !== 'undefined') { %>
+            <% if(message && message.length > 0) { %>
+            <div class="mx-auto alert alert-warning w-2/3 text-center">
+                <%= message %>
+            </div>
+            <% } %>
+        <% } %>
+    </div>
+    <div class="main w-full">
+        <a href="/">
+            <img src="./assets/media/im_logo_mail_sm.png" alt="">
+        </a>
+        <h1 class="heading-primary py-8">
+            Sign In
+        </h1>
+        <form action="/login" method="POST">
+            <input class="mb-12" type="email" name="username" placeholder="email">
+            <input class="mb-24" type="password" name="password" placeholder="password">
+            <button class="button float-right">Submit</button>
+        </form>
+        <p class="inline-block">No account? <a style="color: #5D78FF" href="/register">Create one!</a></p>
+        <a class="absolute text-white" style="right: 0; bottom: -5rem" href="/">Return to the main site</a>
+    </div>
+</body>
+</html>

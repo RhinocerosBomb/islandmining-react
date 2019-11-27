@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign up for Island Mining</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/tailwind.css">
+    <link rel="stylesheet" href="assets/css/login.css">
+</head>
+<style>
+li{
+    list-style:none;
+}
+label,#termsAgreement, #receiveUpdates {
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+</style>
+<body>
+    <div class="container mx-auto">
+        <% if(typeof message !== 'undefined') { %>
+            <% if(message && message.length > 0) { %>
+            <div class="mx-auto alert alert-warning w-2/3 text-center">
+                <%= message %>
+            </div>
+            <% } %>
+        <% } %>
+    </div>
+    <div class="main" style="height: 650px;">
+        <a href="/">
+            <img src="./assets/media/im_logo_mail_sm.png" alt="">
+        </a>
+        <h1 class="heading-primary py-8">
+            Create Account 
+        </h1>
+        <form action="/register" method="POST">
+            <input class="mb-12" type="email" name="username" placeholder="Valid Email">
+            <input class="mb-12" type="password" name="password" pattern="(?=.*\d)(?=.*[\W_]).{8,}"
+                title="Minimum of 8 characters. Should have at least one special character and one number." placeholder="Password">
+            <input
+            class="mb-12"
+            type="text"
+            name="referral"
+            placeholder="Referral Code (optional)"
+            <%- (referralAddress) ? `value=${referralAddress} disabled` : "" %>
+            >
+            
+            <li>
+                <input id="termsAgreement" type="checkbox" value="test" required />
+                <label for="termsAgreement">I agree to the Island Mining 
+                    <a class="underline" href="">Terms of Service</a> and
+                Privacy Policy.</label>
+            </li>
+            <li>
+                <input id="receiveUpdates" type="checkbox" value="test" />
+                <label for="receiveUpdates">I would like to receive updates on Island Mining and
+                the Mining Coin token sale.</label>
+            </li>
+            <button class="mt-8 button w-full">Submit</button>
+        </form>
+        <p class="pt-8 inline-block">Already have an account? <a style="color: #5D78FF" href="/login">Log in here!</a></p>
+        <a class="absolute text-white" style="right: 0; bottom: -5rem" href="/">Return to the main site</a>
+    </div>
+</body>
+
+</html>

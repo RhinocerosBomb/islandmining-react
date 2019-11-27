@@ -1,0 +1,63 @@
+.carousel-vertical-3d {
+	
+	.carousel-items {
+		position: relative;
+		transform-style: preserve-3d;
+		perspective: 1200px;
+	}
+	.carousel-item {
+		backface-visibility: hidden;
+		will-change: transform;
+
+		* {
+		-webkit-user-select: none;
+		   -moz-user-select: none;
+		    -ms-user-select: none;
+		        user-select: none;
+		}
+		&:not(.is-active) {
+			cursor: pointer;
+
+			> * {
+			
+				a {
+					pointer-events: none;
+				}
+			}
+		}
+	}
+	&.carousel-initialized {
+
+		.carousel-item {
+			width: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			opacity: 0;
+			
+			> :only-child {
+				margin-bottom: 0;
+			}
+			
+			&.is-active,
+			&.is-top,
+			&.is-bottom {
+				opacity: 1;
+			}
+			&.is-active {
+				position: relative;
+				top: auto;
+				left: auto;
+			}
+
+			&.is-moving {
+
+				&.was-top,
+				&.was-bottom {
+					opacity: 1;
+					transition: opacity 0.1s linear;
+				}
+			}
+		}
+	}
+}

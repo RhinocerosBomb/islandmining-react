@@ -1,0 +1,35 @@
+.roadmap {
+  position: relative;
+}
+
+.roadmap_gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background-image: linear-gradient(to bottom, #2c1d6233, #eeeeeeff);
+}
+
+.main-footer {
+  background-color: #3e3e3e;
+}
+
+.btn-submit {
+  background: none;
+  border: 1px solid white;
+  border-radius: 3px;
+}
+
+.input-email {
+  padding-left: 10px;
+  border-radius: 3px;
+}
+
+.one-roadmap-mark {
+  opacity: 1 !important;
+}
+
+.main-footer a {
+  color: white !important;
+}

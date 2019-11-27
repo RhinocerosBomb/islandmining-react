@@ -1,0 +1,7 @@
+.signup_icomply>a>h2 {
+  transition: all .2s;
+}
+
+.signup_icomply>a>h2:hover {
+  color: #14227A;
+}
