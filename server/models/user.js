@@ -78,7 +78,8 @@ var UserSchema = new mongoose.Schema({
   },
   transactionHistory: {
     firstRound: Array
-  }
+  },
+  role: { type: String, default: "user" }
 });
 
 UserSchema.plugin(passportLocalMongoose);
