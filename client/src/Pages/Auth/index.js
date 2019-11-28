@@ -5,7 +5,11 @@ import Login from "./Login";
 // import { toAbsoluteUrl } from "../../vendors/_metronic";
 import './auth.scss'
 import "../../vendors/_metronic/_assets/sass/pages/login/login-1.scss";
+import '../../vendors/_metronic/_assets/plugins/line-awesome/css/line-awesome.css';
+import '../../vendors/_metronic/_assets/plugins/flaticon/flaticon.css';
+import '../../vendors/_metronic/_assets/plugins/flaticon2/flaticon.css';
 import authBg from  "../../assets/demo/bg/auth-bg.jpg"
+
 export default function Auth() {
   return (
     <>
@@ -60,7 +64,6 @@ export default function Auth() {
             <div className="kt-grid__item kt-grid__item--fluid  kt-grid__item--order-tablet-and-mobile-1  kt-login__wrapper">
               <Switch>
                 <Redirect from="/auth" exact={true} to="/auth/login" />
-
                 <Route path="/auth/login" component={Login} />
                 <Route path="/auth/registration" component={Registration} />
               </Switch>

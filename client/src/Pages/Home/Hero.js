@@ -1,7 +1,5 @@
 import React from 'react';
 import Particles from 'react-particles-js';
-import ScrollAnimation from 'react-animate-on-scroll';
-
 import FancyScrollAnimation from './FancyScrollAnimation';
 
 import './home.css';
@@ -71,13 +69,13 @@ function Hero() {
         <div className="row d-flex flex-wrap align-items-center">
           <div className="lqd-column col-lg-5 col-md-6">
             <div className="ld-fancy-heading mask-text text-uppercase">
-              <h6
+              {/* <h6
                 className="font-size-20 ltr-sp-01 ca-initvalues-applied split-text-applied"
                 data-split-text="true"
                 data-custom-animations="true"
                 data-ca-options='{"triggerHandler":"inview", "animationTarget":".split-inner", "duration":"1600", "delay":100, "easing":"easeOutQuint", "direction":"forward", "initValues":{"translateY":60}, "animations":{"translateY":0}}'
                 data-split-options='{"type":"lines"}'
-              />
+              /> */}
             </div>
             <div className="ld-fancy-heading mask-text">
               <h2

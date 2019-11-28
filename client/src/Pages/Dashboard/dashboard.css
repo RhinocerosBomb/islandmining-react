@@ -28,9 +28,9 @@ html {
 #dashboard {
   /* This defines what size our webpage is. */
   scroll-behavior: smooth;
-  padding: 6rem;
+  padding: 8rem;
   padding-top: 1rem;
-  background-image: url(../img/misc/background.png);
+  background-image: url(../../assets/img/misc/background.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -195,7 +195,7 @@ i {
 }
 
 .navbarContainer {
-  padding-bottom: 6rem;
+  padding-bottom: 15rem;
 }
 
 .logged-in-name {

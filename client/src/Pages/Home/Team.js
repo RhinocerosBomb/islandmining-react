@@ -4,11 +4,11 @@ import arakawa_sq from '../../assets/media/Arakawa-SQ.jpg';
 import case_sq from '../../assets/media/Case-SQ.jpg';
 import chrismarsh_sq from '../../assets/media/ChrisMarsh-SQ.jpg';
 import christopher_sq from '../../assets/media/Christopher-SQ.jpg';
-import logo_sq from '../../assets/media/logo_sq.png';
+// import logo_sq from '../../assets/media/logo_sq.png';
 import naoki_singer_sq from '../../assets/media/NaokoSinger-SQ.jpg';
 import neil_sl from '../../assets/media/Neil-SQ.jpg';
 import samir_sq from '../../assets/media/Samir-SQ.jpg';
-import self_hosted_video_demo from '../../assets/media/self-hosted-video-demo.jpg';
+// import self_hosted_video_demo from '../../assets/media/self-hosted-video-demo.jpg';
 import sergelen_sq from '../../assets/media/Sergelen-SQ.jpg';
 
 function Team() {

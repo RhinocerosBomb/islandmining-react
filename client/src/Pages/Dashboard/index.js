@@ -1,11 +1,7 @@
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Countdown from '../../components/Countdown';
-import '../../assets/css/dashboard.css';
-
-import '../../assets/css/tailwind.css';
-
-import './Dashboard.css';
+import './dashboard.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions as userActions } from '../../store/ducks/auth.duck';
 import { actions as dashboardActions } from '../../store/ducks/dashboard.duck';
@@ -111,7 +107,6 @@ function Dashboard() {
   };
 
   const handleCopyText = (target, e) => {
-    console.log(target);
     if (target === 'ethereumAddress' || target === 'bitcoinAddress') {
       const dummy = document.createElement('textarea');
       document.body.appendChild(dummy);
@@ -214,7 +209,7 @@ function Dashboard() {
                 <input
                   style={{ backgroundColor: 'transparent', cursor: 'pointer' }}
                   type="submit"
-                  value="Log out"
+                  value=" Log out"
                 />
               </form>
             </div>
@@ -230,7 +225,7 @@ function Dashboard() {
             Dashboard
           </h3>
           <h3 className="pl-4">
-            Current Conversion Rates
+            Current Conversion Rates {' '}
             <em>{dashboard.cryptoPrice.dateTime}</em>
           </h3>
           <div className="pl-4 flex flex-wrap">

@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 // import { FormattedMessage, injectIntl } from "react-intl";
-import { Checkbox, FormControlLabel, TextField } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 import { actions } from '../../store/ducks/auth.duck';
 import { register } from '../../crud/auth.crud';
 

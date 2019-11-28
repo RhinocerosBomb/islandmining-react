@@ -34,5 +34,8 @@
     "passport-local-mongoose": "^5.0.1",
     "request": "^2.88.0",
     "web3": "^1.2.2"
+  },
+  "devDependencies": {
+    "braces": ">=2.3.1"
   }
 }

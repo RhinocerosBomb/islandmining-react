@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Redirect, HashRouter as Router, Switch } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react'
 import { useSelector, shallowEqual } from 'react-redux';
-import asyncComponent from './helpers/AsyncFunc';
+import asyncComponent from './components/AsyncFunc';
 
 import {persistor} from './store/store.js';
 
@@ -102,11 +102,6 @@ const PublicRoutes = ({ history }) => {
           component={asyncComponent(() => import('./Pages/Dashboard'))}
           isLoggedIn={isLoggedIn}
         />
-        {/* <Route
-          exact
-          path="/admin"
-          component={asyncComponent(() => import('./Pages/Admin'))}
-        /> */}
         <RestrictedRouteWhenNotAdmin
           path="/admin"
           component={asyncComponent(() => import('./Pages/Admin'))}
