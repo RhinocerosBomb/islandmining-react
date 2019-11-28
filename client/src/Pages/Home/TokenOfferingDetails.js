@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Countdown from '../../components/Countdown.js'
 function TokenOfferingDetails() {
     return (
       <section className="vc_row pt-50 pb-50" id="works">
@@ -51,19 +51,7 @@ function TokenOfferingDetails() {
               <div className="lqd-column-inner border-athens-gray border-radius-5 pt-50 pb-25 px-2 px-md-5">
                 <div className="row">
                   <div className="lqd-column col-md-10 col-md-offset-1 mb-35">
-                    <div className="countdown text-arapawa is-countdown" data-fittext="true"
-                         data-fittext-options="{ &quot;compressor&quot;: 0.75, &quot;minFontSize&quot;: 60, &quot;maxFontSize&quot;: 60 }"
-                         data-plugin-countdown="true"
-                         data-countdown-options="{&quot;until&quot;:&quot;2019-12-1&quot;}"
-                         style={{fontSize: '60px'}}><span className="countdown-row"><span
-                      className="countdown-section"><span className="countdown-amount">34</span><span
-                      className="countdown-period">Days</span></span><span className="countdown-sep">:</span><span
-                      className="countdown-section"><span className="countdown-amount">7</span><span
-                      className="countdown-period">Hours</span></span><span className="countdown-sep">:</span><span
-                      className="countdown-section"><span className="countdown-amount">46</span><span
-                      className="countdown-period">Minutes</span></span><span className="countdown-sep">:</span><span
-                      className="countdown-section"><span className="countdown-amount">19</span><span
-                      className="countdown-period">Seconds</span></span></span></div>
+                    <Countdown />
                   </div>
                   <div className="lqd-column col-md-4 col-xs-6">
                     <p>

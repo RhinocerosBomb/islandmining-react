@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import Countdown from '../../components/Countdown';
 import '../../assets/css/dashboard.css';
+
+import '../../assets/css/tailwind.css';
+
 import './Dashboard.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions as userActions } from '../../store/ducks/auth.duck';
@@ -72,17 +76,66 @@ function Dashboard() {
     });
   };
 
+  const getFirstTierRewards = () => {
+    let firstTierRewards;
+
+    const {
+      affiliateProgram: { referrals }
+    } = user;
+    if (referrals < 10000) {
+      firstTierRewards = (referrals * 0.05).toFixed(1);
+    } else if (referrals >= 10000 && referrals <= 50000) {
+      firstTierRewards = (referrals * 0.065).toFixed(1);
+    } else if (referrals > 50000) {
+      firstTierRewards = (referrals * 0.08).toFixed(1);
+    }
+    return firstTierRewards;
+  };
+
+  const getSecondTierRewards = () => {
+    let secondTierRewards;
+    const {
+      affiliateProgram: { referrals, referrals_2 }
+    } = user;
+    if (referrals_2 < 10000) {
+      secondTierRewards = (referrals_2 * 0.01).toFixed(1);
+    } else if (referrals >= 10000 && referrals <= 50000) {
+      secondTierRewards = (referrals_2 * 0.015).toFixed(1);
+    } else if (referrals > 50000) {
+      secondTierRewards = (referrals_2 * 0.02).toFixed(1);
+    }
+
+    return secondTierRewards;
+  };
+
   const handleCopyText = (target, e) => {
-    console.log(target)
-    if(target === 'ethereumAddress' || target === 'bitcoinAddress') {
-      const dummy = document.createElement("textarea");
-      document.body.appendChild(dummy)
+    console.log(target);
+    if (target === 'ethereumAddress' || target === 'bitcoinAddress') {
+      const dummy = document.createElement('textarea');
+      document.body.appendChild(dummy);
       dummy.value = user.cryptocurrencyAddresses[target];
       dummy.select();
-      document.execCommand("copy");
-      document.body.removeChild(dummy);  
+      document.execCommand('copy');
+      document.body.removeChild(dummy);
+    } else if (target === 'referralAddress') {
+      const input = document.createElement('input');
+      input.id = 'temp_element';
+
+      input.style.height = 0;
+
+      document.body.appendChild(input);
+
+      input.value = document.getElementById('referralAddress').innerText;
+
+      const selector = document.querySelector('#temp_element');
+
+      selector.select();
+      selector.setSelectionRange(0, 99999);
+      document.execCommand('copy');
+      // Remove the textarea
+      document.body.removeChild(input);
     }
-  }
+  };
 
   const handleSubmitUserInformation = () => {
     const {
@@ -144,20 +197,22 @@ function Dashboard() {
 
   return (
     <div id="dashboard">
-      <div className="navbar absolute text-white flex flex-wrap pt-8">
-        <Link to="/">
-          <img src={logo_dashboard} alt="" />
-        </Link>
-        <div className="logged-in-name">
-          <div>
-            Logged in as <span id="username">{user.username}</span> |
-            <form style={{ display: 'inline' }} onSubmit={logout}>
-              <input
-                style={{ backgroundColor: 'transparent', cursor: 'pointer' }}
-                type="submit"
-                value="Log out"
-              />
-            </form>
+      <div className="navbarContainer">
+        <div className="navbar absolute text-white flex flex-wrap pt-8">
+          <Link to="/">
+            <img src={logo_dashboard} alt="" />
+          </Link>
+          <div className="logged-in-name">
+            <div>
+              Logged in as <span id="username">{user.username}</span> |
+              <form style={{ display: 'inline' }} onSubmit={logout}>
+                <input
+                  style={{ backgroundColor: 'transparent', cursor: 'pointer' }}
+                  type="submit"
+                  value="Log out"
+                />
+              </form>
+            </div>
           </div>
         </div>
       </div>
@@ -206,14 +261,7 @@ function Dashboard() {
           Time Remaining Until Round Closes
         </h1>
         <div className="container mx-auto flex flex-wrap justify-center px-16 md:flex-no-wrap mb-16">
-          <div
-            className="dashboard-countdown countdown text-arapawa"
-            data-fittext="true"
-            style={{ flex: 'auto' }}
-            data-fittext-options='{ "compressor": 0.75, "minFontSize": 60, "maxFontSize": 60 }'
-            data-plugin-countdown="true"
-            data-countdown-options='{"until":"2019-12-1"}'
-          ></div>
+          <Countdown classNames="dashboard-countdown" />
         </div>
         <header className="container mx-auto flex flex-wrap px-16 md:flex-no-wrap mb-16">
           <img
@@ -239,7 +287,9 @@ function Dashboard() {
                 <div className="w-full pb-4 md:w-1/2">
                   <p>Price</p>
                   <div className="heading-tertiary">
-                    1 MNT = $0.06 USD = 0.00000617 BTC = 0.000285 ETH
+                    1 MNT = $0.06 USD ={' '}
+                    {(0.06 / dashboard.cryptoPrice.BTCUSDT).toFixed(8)} BTC ={' '}
+                    {(0.06 / dashboard.cryptoPrice.ETHUSDT).toFixed(8)} ETH
                   </div>
                 </div>
                 <div className="w-full pb-4 md:w-1/4">
@@ -421,141 +471,139 @@ function Dashboard() {
                 </div>
               </div>
             </div>
-            <div className="w-1/2 px-16">
-              <div className="py-2 w-full flex flex-wrap">
-                <h3 className="heading-tertiary">First Name</h3>
-                <input
-                  className="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2"
-                  name="firstName"
-                  type="text"
-                  placeholder="First Name"
-                  value={userInformation.firstName}
-                  onChange={handleUserInformationChange}
-                  required
-                />
+            <form onSubmit={handleSubmitUserInformation}>
+              <div className="w-1/2 px-16">
+                <div className="py-2 w-full flex flex-wrap">
+                  <h3 className="heading-tertiary">First Name</h3>
+                  <input
+                    className="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2"
+                    name="firstName"
+                    type="text"
+                    placeholder="First Name"
+                    value={userInformation.firstName}
+                    onChange={handleUserInformationChange}
+                    required
+                  />
+                </div>
+                <div className="py-2 w-full flex flex-wrap">
+                  <h3 className="heading-tertiary">Last Name</h3>
+                  <input
+                    className="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2"
+                    name="lastName"
+                    type="text"
+                    placeholder="Last Name"
+                    value={userInformation.lastName}
+                    onChange={handleUserInformationChange}
+                    required
+                  />
+                </div>
+                <div className="py-2 w-full flex flex-wrap">
+                  <h3 className="heading-tertiary">Address</h3>
+                  <input
+                    name="address"
+                    className="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2"
+                    type="text"
+                    placeholder="Address"
+                    value={userInformation.address}
+                    onChange={handleUserInformationChange}
+                    required
+                  />
+                </div>
+                <div className="py-2 w-full flex flex-wrap">
+                  <h3 className="heading-tertiary">City</h3>
+                  <input
+                    name="city"
+                    className="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2"
+                    type="text"
+                    placeholder="City"
+                    value={userInformation.city}
+                    onChange={handleUserInformationChange}
+                    required
+                  />
+                </div>
+                <div className="py-2 w-full flex flex-wrap">
+                  <h3 className="heading-tertiary">Province</h3>
+                  <input
+                    name="province"
+                    className="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2"
+                    type="text"
+                    placeholder="Province"
+                    value={userInformation.province}
+                    onChange={handleUserInformationChange}
+                    required
+                  />
+                </div>
               </div>
-              <div className="py-2 w-full flex flex-wrap">
-                <h3 className="heading-tertiary">Last Name</h3>
-                <input
-                  className="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2"
-                  name="lastName"
-                  type="text"
-                  placeholder="Last Name"
-                  value={userInformation.lastName}
-                  onChange={handleUserInformationChange}
-                  required
-                />
+              <div className="w-1/2 px-16">
+                <div className="py-2 w-full flex flex-wrap">
+                  <h3 className="heading-tertiary">Date of birth</h3>
+                  <input
+                    id="date-input"
+                    name="DOB"
+                    className="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2"
+                    type="date"
+                    placeholder="Date of birth"
+                    value={userInformation.DOB}
+                    onChange={handleUserInformationChange}
+                    required
+                  />
+                </div>
+                <div className="py-2 w-full flex flex-wrap">
+                  <h3 className="heading-tertiary">Phone</h3>
+                  <input
+                    id="phone-input"
+                    name="phone"
+                    className="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2"
+                    type="text"
+                    placeholder="Phone"
+                    pattern="[0-9]{10}"
+                    maxlength="10"
+                    value={userInformation.phone}
+                    onChange={handleUserInformationChange}
+                    required
+                  />
+                </div>
+                <div className="py-2 w-full flex flex-wrap">
+                  <h3 className="heading-tertiary">Citizenship</h3>
+                  <input
+                    name="citizenship"
+                    className="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2"
+                    type="text"
+                    placeholder="Citizenship"
+                    value={userInformation.citizenship}
+                    onChange={handleUserInformationChange}
+                    required
+                  />
+                </div>
+                <div className="py-2 w-full flex flex-wrap">
+                  <h3 className="heading-tertiary">2nd Citizenship</h3>
+                  <input
+                    name="citizenship_2"
+                    className="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2"
+                    type="text"
+                    placeholder="Secondary Citizenship (optional)"
+                    value={userInformation.citizenship_2}
+                    onChange={handleUserInformationChange}
+                  />
+                </div>
+                <div className="py-2 w-full flex flex-wrap">
+                  <h3 className="heading-tertiary">Country of Residency</h3>
+                  <input
+                    name="residency"
+                    className="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2"
+                    type="text"
+                    placeholder="Country of Residency"
+                    value={userInformation.residency}
+                    onChange={handleUserInformationChange}
+                    required
+                  />
+                </div>
               </div>
-              <div className="py-2 w-full flex flex-wrap">
-                <h3 className="heading-tertiary">Address</h3>
-                <input
-                  name="address"
-                  className="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2"
-                  type="text"
-                  placeholder="Address"
-                  value={userInformation.address}
-                  onChange={handleUserInformationChange}
-                  required
-                />
+
+              <div className="w-full text-center mt-16">
+                <button className="w-1/3 button" type="submit" value="Submit" />
               </div>
-              <div className="py-2 w-full flex flex-wrap">
-                <h3 className="heading-tertiary">City</h3>
-                <input
-                  name="city"
-                  className="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2"
-                  type="text"
-                  placeholder="City"
-                  value={userInformation.city}
-                  onChange={handleUserInformationChange}
-                  required
-                />
-              </div>
-              <div className="py-2 w-full flex flex-wrap">
-                <h3 className="heading-tertiary">Province</h3>
-                <input
-                  name="province"
-                  className="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2"
-                  type="text"
-                  placeholder="Province"
-                  value={userInformation.province}
-                  onChange={handleUserInformationChange}
-                  required
-                />
-              </div>
-            </div>
-            <div className="w-1/2 px-16">
-              <div className="py-2 w-full flex flex-wrap">
-                <h3 className="heading-tertiary">Date of birth</h3>
-                <input
-                  id="date-input"
-                  name="DOB"
-                  className="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2"
-                  type="date"
-                  placeholder="Date of birth"
-                  value={userInformation.DOB}
-                  onChange={handleUserInformationChange}
-                  required
-                />
-              </div>
-              <div className="py-2 w-full flex flex-wrap">
-                <h3 className="heading-tertiary">Phone</h3>
-                <input
-                  id="phone-input"
-                  name="phone"
-                  className="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2"
-                  type="text"
-                  placeholder="Phone"
-                  pattern="[0-9]{10}"
-                  maxlength="10"
-                  value={userInformation.phone}
-                  onChange={handleUserInformationChange}
-                  required
-                />
-              </div>
-              <div className="py-2 w-full flex flex-wrap">
-                <h3 className="heading-tertiary">Citizenship</h3>
-                <input
-                  name="citizenship"
-                  className="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2"
-                  type="text"
-                  placeholder="Citizenship"
-                  value={userInformation.citizenship}
-                  onChange={handleUserInformationChange}
-                  required
-                />
-              </div>
-              <div className="py-2 w-full flex flex-wrap">
-                <h3 className="heading-tertiary">2nd Citizenship</h3>
-                <input
-                  name="citizenship_2"
-                  className="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2"
-                  type="text"
-                  placeholder="Secondary Citizenship (optional)"
-                  value={userInformation.citizenship_2}
-                  onChange={handleUserInformationChange}
-                />
-              </div>
-              <div className="py-2 w-full flex flex-wrap">
-                <h3 className="heading-tertiary">Country of Residency</h3>
-                <input
-                  name="residency"
-                  className="rounded-lg pl-4 ml-auto w-2/3 border-gray-500 border-solid border-2"
-                  type="text"
-                  placeholder="Country of Residency"
-                  value={userInformation.residency}
-                  onChange={handleUserInformationChange}
-                  required
-                />
-              </div>
-            </div>
-            <div className="w-full text-center mt-16">
-              <input
-                className="w-1/3 button"
-                type="submit"
-                value="Submit"
-                onClick={handleSubmitUserInformation}
-              />
-            </div>
+            </form>
           </section>
         )}
 
@@ -760,16 +808,18 @@ function Dashboard() {
                               alt=""
                             />
                             <strong>BTC</strong> $
-                            <span className=""
-id="BTC-price">{dashboard.cryptoPrice.BTCUSDT}</span>
+                            <span className="" id="BTC-price">
+                              {dashboard.cryptoPrice.BTCUSDT}
+                            </span>
                           </div>
                           <div className="py-4 border-solid border-2 border-gray-500 rounded-lg shadow-lg">
-                            <img
-                              className="mx-auto"
-                              src={btc_icon}
-                              alt="BTC"
-                            />
-                            <span id="MNT-to-BTC">{((0.06 /dashboard.cryptoPrice.BTCUSDT).toFixed(8))}</span> BTC
+                            <img className="mx-auto" src={btc_icon} alt="BTC" />
+                            <span id="MNT-to-BTC">
+                              {(0.06 / dashboard.cryptoPrice.BTCUSDT).toFixed(
+                                8
+                              )}
+                            </span>{' '}
+                            BTC
                           </div>
                         </div>
                         <div className="w-1/2 text-center px-2">
@@ -780,17 +830,19 @@ id="BTC-price">{dashboard.cryptoPrice.BTCUSDT}</span>
                               alt=""
                             />
                             <strong>ETH</strong> $
-                            <span className=""
-id="ETH-price">{dashboard.cryptoPrice.ETHUSDT}</span>
+                            <span className="" id="ETH-price">
+                              {dashboard.cryptoPrice.ETHUSDT}
+                            </span>
                           </div>
 
                           <div className="py-4 border-solid border-2 border-gray-500 rounded-lg shadow-lg">
-                            <img
-                              className="mx-auto"
-                              src={eth_icon}
-                              alt="ETH"
-                            />
-                            <span id="MNT-to-ETH">{((0.06 /dashboard.cryptoPrice.ETHUSDT).toFixed(8))}</span> ETH
+                            <img className="mx-auto" src={eth_icon} alt="ETH" />
+                            <span id="MNT-to-ETH">
+                              {(0.06 / dashboard.cryptoPrice.ETHUSDT).toFixed(
+                                8
+                              )}
+                            </span>{' '}
+                            ETH
                           </div>
                         </div>
                       </div>
@@ -910,7 +962,7 @@ id="ETH-price">{dashboard.cryptoPrice.ETHUSDT}</span>
                 </div>
                 <button
                   className="copyText"
-                  onclick="copyReferralAddress('referralAddress')"
+                  onClick={e => handleCopyText('referralAddress', e)}
                 >
                   Click here to copy to clipboard
                 </button>
@@ -927,7 +979,7 @@ id="ETH-price">{dashboard.cryptoPrice.ETHUSDT}</span>
                 <i className="fab fa-line"></i>
                 <i
                   className="fas fa-comment"
-                  style={{ lineHeight: 1, fontSize: '2.8rem' }}
+                  style={{ lineHeight: 1, fontSize: '2.2rem' }}
                 ></i>
                 <i className="fab fa-linkedin"></i>
               </div>
@@ -1033,7 +1085,7 @@ id="ETH-price">{dashboard.cryptoPrice.ETHUSDT}</span>
                     className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
                   >
                     <span id="total-purchased--tier-1">
-                      {(user.totalFirstTierRewards / 0.06).toFixed(1)}
+                      {((user.totalFirstTierRewards || 0) / 0.06).toFixed(1)}
                     </span>
                     MNT
                   </div>
@@ -1043,7 +1095,10 @@ id="ETH-price">{dashboard.cryptoPrice.ETHUSDT}</span>
                     style={{ color: '#009231' }}
                     className="font-bold border-solid border-2 border-green-500 shadow-md rounded-lg"
                   >
-                    <span id="current-awards--tier-1">6,020</span> MNT
+                    <span id="current-awards--tier-1">
+                      {getFirstTierRewards()}
+                    </span>{' '}
+                    MNT
                   </div>
                 </td>
               </tr>
@@ -1063,7 +1118,7 @@ id="ETH-price">{dashboard.cryptoPrice.ETHUSDT}</span>
                     className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
                   >
                     <span id="total-purchased--tier-2">
-                      {(user.totalSecondTierRewards / 0.06).toFixed(1)}
+                      {((user.totalSecondTierRewards || 0) / 0.06).toFixed(1)}
                     </span>
                     MNT
                   </div>
@@ -1073,7 +1128,10 @@ id="ETH-price">{dashboard.cryptoPrice.ETHUSDT}</span>
                     style={{ color: '#009231' }}
                     className="font-bold border-solid border-2 border-green-500 shadow-md rounded-lg"
                   >
-                    <span id="current-awards--tier-2">43,007</span> MNT
+                    <span id="current-awards--tier-2">
+                      {getSecondTierRewards()}
+                    </span>{' '}
+                    MNT
                   </div>
                 </td>
               </tr>

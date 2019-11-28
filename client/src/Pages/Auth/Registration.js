@@ -50,8 +50,10 @@ function Registration(props) {
 
             if (!values.password) {
               errors.password = 'Field Required';
+            } else if (!/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{7,19}$/.test(values.password)) {
+              errors.password = 'Minimim of 8 characters, 1 number, and 1 special character'
             }
-
+            
             if (!values.confirmPassword) {
               errors.confirmPassword = 'Field Required';
             } else if (values.password !== values.confirmPassword) {
