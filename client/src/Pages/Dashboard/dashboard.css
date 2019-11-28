@@ -20,44 +20,21 @@
 
 html {
   font-size: 62.5%;
-  /* 1 rem = 10px */
-  line-height: 35px;
-  scroll-behavior: smooth;
 }
 
 #dashboard {
+  /* 1 rem = 10px */
+  line-height: 35px;
+  scroll-behavior: smooth;
   /* This defines what size our webpage is. */
   scroll-behavior: smooth;
-  padding: 8rem;
-  padding-top: 1rem;
+  padding: 6em;
+  padding-top: 1em;
   background-image: url(../../assets/img/misc/background.png);
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-@media only screen and (max-width: 1024px) {
-  #dashboard {
-    padding: 0;
-    padding-top: 10rem;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  #dashboard {
-    font-size: 56.25%;
-    padding-top: 10rem;
-  }
-}
-
-@media only screen and (max-width: 575px) {
-  html {
-    font-size: 50%;
-  }
-}
-
-body {
+  font-size: 14px !important;
   font-family: 'Poppins', sans-serif;
-  font-size: 1.4rem;
   font-weight: 400;
   line-height: 35px;
   color: var(--color-black-1);
@@ -75,15 +52,16 @@ ul {
 
 .heading-primary {
   font-family: 'Poppins', sans-serif;
-  font-size: 2.4rem;
+  font-size: 1.7em;
   font-weight: 500;
   line-height: 35px;
   color: #464457;
+  margin-bottom: 20px;
 }
 
 .heading-secondary {
   font-family: 'Poppins', sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.3em;
   color: #5d78ff;
   font-weight: 600;
   line-height: 35px;
@@ -91,7 +69,7 @@ ul {
 
 .heading-tertiary {
   font-family: 'Poppins', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1em;
   font-weight: 700;
   line-height: 35px;
   color: #3f3f3f;
@@ -108,13 +86,13 @@ th:not(:last-of-type) {
 
 th,
 td {
-  padding: 1.5rem;
+  padding: 1.5em;
   text-align: center;
-  width: 20rem;
+  width: 20em;
 }
 
 td {
-  padding: 1.5rem 3.5rem;
+  padding: 1.5em 3.5em;
 }
 
 section {
@@ -152,7 +130,7 @@ section {
   /* Green */
   border: none;
   color: white;
-  padding: 0.6rem 4rem;
+  padding: 0.6em 4em;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -189,29 +167,28 @@ i {
   padding-right: 10px;
 }
 
-.navbar {
+.customNavbar {
   top: 0;
   width: 91%;
+  padding-bottom: 0;
+  padding-right: 0;
+  padding-left: 0;
+  padding-top: 20px;
 }
 
 .navbarContainer {
-  padding-bottom: 15rem;
+  padding-bottom: 10.4em;
+}
+
+.dashboardBar {
+  padding: 20px 40px 20px 40px;
+  margin-bottom: 40px;
 }
 
 .logged-in-name {
   position: absolute;
   left: 0rem;
-  top: 8rem;
-}
-
-@media only screen and (max-width: 767px) {
-  .navbar {
-    left: 0;
-  }
-  .logged-in-name {
-    left: 0rem;
-    top: 6rem;
-  }
+  top: 6.5em;
 }
 
 .fas {
@@ -227,18 +204,39 @@ i {
   color: #ffd500;
 }
 
-@media only screen and (max-width: 1024px) {
-  .navbar {
-    left: 0;
-  }
+.customContainer {
+  width: 100%;
 }
 
-.dashboard-countdown {
+.customAlert {
+  padding: 5px 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.customAlert.customAlert-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+.customAlert.customAlert-warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+.customAlert.customAlert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.countdown.dashboard-countdown {
   border-bottom: 1px solid rgba(34, 136, 34, 0.533);
   border-top: 1px solid rgba(34, 136, 34, 0.533);
   max-width: 680px;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
+  padding-bottom: 4px;
+  padding-top: 4px;
   min-width: 340px;
   flex-grow: 1;
 }
@@ -303,17 +301,81 @@ i {
   display: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 .h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
+.button-dead {
+  background-color: #eeeeee !important;
+  color: #aaaab6 !important;
+  cursor: pointer;
+}
+
+.headerFont {
   font-size: inherit;
   font-weight: inherit;
+}
+
+.lineHeightWeightInherit {
+  line-height: inherit;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+@media only screen and (min-width: 640px) {
+  .customContainer {
+    max-width: 640px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .customContainer {
+    max-width: 768px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .customContainer {
+    max-width: 1024px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .customContainer {
+    max-width: 1280px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .navbar {
+    left: 0;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .navbar {
+    left: 0;
+  }
+  .logged-in-name {
+    left: 0rem;
+    top: 6.5em;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  #dashboard {
+    padding: 0;
+    padding-top: 8em;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #dashboard {
+    font-size: 56.25%;
+    padding-top: 1em;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #dashboard {
+    font-size: 50%;
+  }
 }

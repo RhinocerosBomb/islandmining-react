@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Countdown from '../../components/Countdown';
 import './dashboard.css';
+import '../../assets/css/tailwind.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions as userActions } from '../../store/ducks/auth.duck';
 import { actions as dashboardActions } from '../../store/ducks/dashboard.duck';
@@ -56,7 +57,9 @@ function Dashboard() {
   );
   const [mntInputVal, setMntInputVal] = useState(1);
   const [ethWalletAddress, setEthWalletAddress] = useState('');
-  const [ethAddressAlert, setEthAddressAlert] = useState();
+  const [ethAddressAlert, setEthAddressAlert] = useState(
+    !!user.cryptocurrencyAddresses.ethereumAddress
+  );
   const dispatch = useDispatch();
 
   const logout = () => {
@@ -104,6 +107,33 @@ function Dashboard() {
     }
 
     return secondTierRewards;
+  };
+
+  const getDateString = dateTime => {
+    if (dateTime) {
+      const monthStrings = [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec'
+      ];
+      const newDateTime = new Date(dateTime)
+      const time = `${newDateTime.getUTCHours()}:${newDateTime.getUTCMinutes()}:${newDateTime.getUTCSeconds()} UTC`;
+      const day = newDateTime.getUTCDate();
+      const month = monthStrings[newDateTime.getUTCMonth()];
+      const year = newDateTime.getUTCFullYear();
+      return `${month} ${day}, ${year} ${time}`;
+    }
+
+    return '';
   };
 
   const handleCopyText = (target, e) => {
@@ -192,13 +222,19 @@ function Dashboard() {
     return () => clearInterval(clock);
   }, [dispatch]);
 
+  useEffect(() => {
+    if (user.cryptocurrencyAddresses.ethereumAddress) {
+      setEthAddressAlert('valid');
+    }
+  }, [user]);
+
   const firstTierRewards = getFirstTierRewards();
   const secondTierRewards = getSecondTierRewards();
 
   return (
     <div id="dashboard">
       <div className="navbarContainer">
-        <div className="navbar absolute text-white flex flex-wrap pt-8">
+        <div className="customNavbar absolute text-white flex flex-wrap">
           <Link to="/">
             <img src={logo_dashboard} alt="" />
           </Link>
@@ -218,15 +254,13 @@ function Dashboard() {
       </div>
       <div id="dashboardContainer">
         <div
-          className="mb-16 py-8 px-16 bg-gray-100 flex flex-wrap"
+          className="dashboardBar bg-gray-100 flex flex-wrap"
           style={{ borderRadius: '5px' }}
         >
-          <h3 className="heading-tertiary" style={{ fontWeight: '500px' }}>
-            Dashboard
-          </h3>
-          <h3 className="pl-4">
-            Current Conversion Rates {' '}
-            <em>{dashboard.cryptoPrice.dateTime}</em>
+          <h3 className="heading-tertiary fw-500">Dashboard</h3>
+          <h3 className="pl-4 m-0 headerFont lineHeightWeightInherit">
+            Current Conversion Rates{' '}
+            <em>{getDateString(dashboard.cryptoPrice.dateTime)}</em>
           </h3>
           <div className="pl-4 flex flex-wrap">
             <div style={{ color: '#2185D0' }}>
@@ -260,10 +294,10 @@ function Dashboard() {
         <h1 className="heading-primary mb-8 text-center">
           Time Remaining Until Round Closes
         </h1>
-        <div className="container mx-auto flex flex-wrap justify-center px-16 md:flex-no-wrap mb-16">
+        <div className="customContainer mx-auto flex flex-wrap justify-center px-16 md:flex-no-wrap mb-16">
           <Countdown classNames="dashboard-countdown" />
         </div>
-        <header className="container mx-auto flex flex-wrap px-16 md:flex-no-wrap mb-16">
+        <header className="customContainer mx-auto flex px-16 md:flex-no-wrap mb-16">
           <img
             src={miningcoin_symbol_1}
             style={{
@@ -339,7 +373,7 @@ function Dashboard() {
           </div>
         </header>
 
-        <section className="container mx-auto px-16 py-12 mb-16">
+        <section className="customContainer mx-auto px-16 py-12 mb-16">
           <h1 className="heading-primary pb-8">Mining Coin (MNT) Overview</h1>
           <h3 className="heading-tertiary">Project Introduction</h3>
           <p>
@@ -359,27 +393,27 @@ function Dashboard() {
           user.kycStatus.verified === 'pending') && (
           <section
             id="application"
-            className="container mx-auto px-16 py-12 mb-16"
+            className="customContainer mx-auto px-16 py-12 mb-16"
           >
             <h1 className="heading-primary mb-8">KYC Registration</h1>
             <div className="w-2/3 flex flex-wrap mx-auto mb-8">
               <h3 className="heading-tertiary">KYC Status</h3>
               <div className="md:w-2/3 mx-auto">
                 {user.kycStatus.verified === 'pending' && (
-                  <div className="alert alert-warning font-bold text-center">
+                  <div className="customAlert customAlert-warning font-bold text-center">
                     Resume KYC application. If completed, please check back in 5
                     minutes
                   </div>
                 )}
 
                 {user.kycStatus.verified === 'false' && (
-                  <div className="alert alert-warning font-bold text-center">
+                  <div className="customAlert customAlert-warning font-bold text-center">
                     Please complete KYC application below
                   </div>
                 )}
 
                 {user.kycStatus.verified === 'failed' && (
-                  <div className="alert alert-danger font-bold text-center">
+                  <div className="customAlert customAlert-danger font-bold text-center">
                     Rejected
                   </div>
                 )}
@@ -461,12 +495,12 @@ function Dashboard() {
           </section>
         )}
         {user.kycStatus.verified === 'true' && !user.userInformation && (
-          <section className="container mx-auto px-16 py-12 mb-16">
+          <section className="customContainer mx-auto px-16 py-12 mb-16">
             <h1 className="heading-primary mb-8">KYC Registration</h1>
             <div className="w-2/3 flex flex-wrap mx-auto mb-8">
               <h3 className="heading-tertiary">KYC Status</h3>
               <div className="md:w-2/3 mx-auto">
-                <div className="alert alert-success font-bold text-center">
+                <div className="customAlert customAlert-success font-bold text-center">
                   Approved! Fill in information then you're good to go.
                 </div>
               </div>
@@ -612,13 +646,13 @@ function Dashboard() {
           userInformation.firstName && (
             <section
               id="application"
-              className="container mx-auto px-16 py-12 mb-16"
+              className="customContainer mx-auto px-16 py-12 mb-16"
             >
               <h1 className="heading-primary mb-8">KYC Registration</h1>
               <div className="w-2/3 flex flex-wrap mx-auto mb-8">
                 <h3 className="heading-tertiary">KYC Status</h3>
                 <div className="md:w-2/3 mx-auto">
-                  <div className="alert alert-success font-bold text-center">
+                  <div className="customAlert customAlert-success font-bold text-center">
                     Approved!
                   </div>
                 </div>
@@ -633,12 +667,12 @@ function Dashboard() {
           )}
 
         {user.userInformation && userInformation.firstName && (
-          <section className="container mx-auto px-16 py-12 mb-16">
+          <section className="customContainer mx-auto px-16 py-12 mb-16">
             <h1 className="heading-primary mb-8">Payment</h1>
             <div className="md:w-2/3 mx-auto">
               {user.kycStatus.verified === 'true' && (
                 <>
-                  <div className="alert alert-success font-bold text-center">
+                  <div className="customAlert customAlert-success font-bold text-center">
                     You are approved for the token sale!
                   </div>
                   <p
@@ -652,19 +686,19 @@ function Dashboard() {
               )}
 
               {user.kycStatus.verified === 'pending' && (
-                <div className="alert alert-warning font-bold text-center">
+                <div className="customAlert customAlert-warning font-bold text-center">
                   KYC pending. Please check back shortly.
                 </div>
               )}
 
               {user.kycStatus.verified === 'false' && (
-                <div className="alert alert-warning font-bold text-center">
+                <div className="customAlert customAlert-warning font-bold text-center">
                   Please complete KYC application above
                 </div>
               )}
 
               {user.kycStatus.verified === 'failed' && (
-                <div className="alert alert-danger font-bold text-center">
+                <div className="customAlert customAlert-danger font-bold text-center">
                   Something went wrong. Please try the application again.
                 </div>
               )}
@@ -713,20 +747,13 @@ function Dashboard() {
                         Validate Address
                       </button>
                     )}
-                    {/* <style>
-                    .button-dead {
-                        background-color: #EEEEEE !important;
-                        color: #AAAAB6 !important;
-                        cursor: pointer;
-                    }
-                </style> */}
                     {user.cryptocurrencyAddresses.ethereumAddress && (
                       <div className="button button-dead mx-auto">
                         Validate Address
                       </div>
                     )}
                   </form>
-                  <small className="container mx-auto text-center w-2/3 pt-8">
+                  <small className="customContainer mx-auto text-center w-2/3 pt-8">
                     By validating your Ethereum address, you agree to the
                     <a className="underline" href="">
                       Mining Coin Token Sale terms
@@ -738,13 +765,13 @@ function Dashboard() {
                   </small>
                 </div>
                 {ethAddressAlert === 'valid' && (
-                  <div className="w-2/3 mx-auto alert alert-success font-bold text-center">
+                  <div className="w-2/3 mx-auto customAlert customAlert-success font-bold text-center">
                     Wallet address validated!
                   </div>
                 )}
 
                 {user.cryptocurrencyAddresses.ethereumAddress === 'invalid' && (
-                  <div className="w-2/3 mx-auto alert alert-danger font-bold text-center">
+                  <div className="w-2/3 mx-auto customAlert customAlert-danger font-bold text-center">
                     Invalid wallet address.
                   </div>
                 )}
@@ -871,7 +898,7 @@ function Dashboard() {
                         </div>
                         <div className="w-3/4 text-center">
                           <p id="ethereumAddress" className="heading-tertiary">
-                            0xBa1CBB940d036d6A7Cd9abd2efec6Cae7Fb2E5d5
+                            {user.cryptocurrencyAddresses.ethereumAddress}
                           </p>
                           <button
                             className="copyText"
@@ -896,15 +923,17 @@ function Dashboard() {
                           </h3>
                         </div>
                         <div className="w-3/4 text-center">
-                          {/* <% if(!cryptocurrencyAddresses.bitcoinAddress) { %>
-                    <p className="heading-tertiary">
-                        Error fetching bitcoin address, please contact support
-                    </p>
-                    <% } else { %>
-                    <p className="heading-tertiary" id="bitcoinAddress">
-                        <%= cryptocurrencyAddresses.bitcoinAddress %>
-                    </p>
-                    <% } %> */}
+                          {!user.cryptocurrencyAddresses.bitcoinAddress && (
+                            <p className="heading-tertiary">
+                              Error fetching bitcoin address, please contact
+                              support
+                            </p>
+                          )}
+                          {user.cryptocurrencyAddresses.bitcoinAddress && (
+                            <p className="heading-tertiary" id="bitcoinAddress">
+                              {user.cryptocurrencyAddresses.bitcoinAddress}
+                            </p>
+                          )}
                           <button
                             className="copyText"
                             onClick={e => handleCopyText('bitcoinAddress', e)}
@@ -933,7 +962,7 @@ function Dashboard() {
         )}
 
         {user.affiliateProgram.affiliatePermissions === true && (
-          <section className="container mx-auto px-16 py-12 mb-16">
+          <section className="customContainer mx-auto px-16 py-12 mb-16">
             <h1 className="heading-primary mb-8">Affiliate Program</h1>
             <p className="text-center mb-16">
               Use your referral link to share the Mining Coin Token Sale with
@@ -1147,7 +1176,7 @@ function Dashboard() {
         )}
 
         {user.userInformation && userInformation.firstName && (
-          <section className="container mx-auto px-16 py-12 mb-16">
+          <section className="customContainer mx-auto px-16 py-12 mb-16">
             <h1 className="heading-primary mb-8">Your Registration Info</h1>
             <div className="flex flex-wrap w-full md:w-2/3 mx-auto mb-16">
               <div className="w-1/2">First Name</div>

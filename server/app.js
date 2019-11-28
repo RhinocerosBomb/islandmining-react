@@ -30,7 +30,7 @@ const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
 
 // Include binance api scheduler
-// const binanceScheduler = require("./binanceScheduler")(CryptoPrice);
+const binanceScheduler = require("./binanceScheduler")(CryptoPrice);
 
 // Variables
 // const CMC_API_KEY = '2372fa89-a6e9-461a-811d-fdaf24506f31'; // Coin Market Cap API key
