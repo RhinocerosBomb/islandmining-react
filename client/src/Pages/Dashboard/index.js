@@ -18,26 +18,27 @@ import {
 import logo_dashboard from '../../assets/img/logo/logo_dashboard.png';
 import btc_icon from '../../assets/img/icon/BTC_icon.png';
 import eth_icon from '../../assets/img/icon/ETH_icon.png';
+import mnt_icon from '../../assets/img/icon/MNT_icon.png';
 import whitepaper from '../../assets/img/icon/document.png';
 import miningcoin_symbol_1 from '../../assets/img/icon/miningcoin-symbol-1.png';
 
-const getCurrentTime = () => {
-  const date = new Date();
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  let period;
-  if (hours > 12) {
-    period = 'PM';
-  } else {
-    period = 'AM';
-  }
-
-  const toString = () => `${hours}:${minutes} ${period}`;
-
-  return { hours, minutes, period, toString };
-};
-
 function Dashboard() {
+  const getCurrentTime = () => {
+    const date = new Date();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    let period;
+    if (hours > 12) {
+      period = 'PM';
+    } else {
+      period = 'AM';
+    }
+
+    const toString = () => `${hours}:${minutes} ${period}`;
+
+    return { hours, minutes, period, toString };
+  };
+
   const {
     auth: { user },
     dashboard
@@ -57,6 +58,7 @@ function Dashboard() {
       residency: ''
     }
   );
+  const [mntInputVal, setMntInputVal] = useState(1);
   const [ethWalletAddress, setEthWalletAddress] = useState('');
   const [ethAddressAlert, setEthAddressAlert] = useState();
   const dispatch = useDispatch();
@@ -194,6 +196,9 @@ function Dashboard() {
 
     return () => clearInterval(clock);
   }, [dispatch]);
+
+  const firstTierRewards = getFirstTierRewards();
+  const secondTierRewards = getSecondTierRewards();
 
   return (
     <div id="dashboard">
@@ -774,16 +779,13 @@ function Dashboard() {
                           Market Value:
                         </div>
                         <div className="w-full py-4 border-solid border-2 border-gray-500 rounded-lg shadow-lg px-8">
-                          <img
-                            className="mx-auto"
-                            src="assets/img/icon/MNT_icon.png"
-                            alt="MNT"
-                          />
+                          <img className="mx-auto" src={mnt_icon} alt="MNT" />
                           <input
                             className="w-2/3 pl-4 mr-4 border-solid border-2 border-gray-500 rounded-lg"
                             id="MNT-conversion-input"
                             type="number"
-                            value="1"
+                            value={mntInputVal}
+                            onChange={e => setMntInputVal(e.target.value)}
                           />
                           MNT
                         </div>
@@ -815,9 +817,10 @@ function Dashboard() {
                           <div className="py-4 border-solid border-2 border-gray-500 rounded-lg shadow-lg">
                             <img className="mx-auto" src={btc_icon} alt="BTC" />
                             <span id="MNT-to-BTC">
-                              {(0.06 / dashboard.cryptoPrice.BTCUSDT).toFixed(
-                                8
-                              )}
+                              {(
+                                (mntInputVal * 0.06) /
+                                dashboard.cryptoPrice.BTCUSDT
+                              ).toFixed(8)}
                             </span>{' '}
                             BTC
                           </div>
@@ -838,9 +841,10 @@ function Dashboard() {
                           <div className="py-4 border-solid border-2 border-gray-500 rounded-lg shadow-lg">
                             <img className="mx-auto" src={eth_icon} alt="ETH" />
                             <span id="MNT-to-ETH">
-                              {(0.06 / dashboard.cryptoPrice.ETHUSDT).toFixed(
-                                8
-                              )}
+                              {(
+                                (mntInputVal * 0.06) /
+                                dashboard.cryptoPrice.ETHUSDT
+                              ).toFixed(8)}
                             </span>{' '}
                             ETH
                           </div>
@@ -1095,9 +1099,7 @@ function Dashboard() {
                     style={{ color: '#009231' }}
                     className="font-bold border-solid border-2 border-green-500 shadow-md rounded-lg"
                   >
-                    <span id="current-awards--tier-1">
-                      {getFirstTierRewards()}
-                    </span>{' '}
+                    <span id="current-awards--tier-1">{firstTierRewards}</span>{' '}
                     MNT
                   </div>
                 </td>
@@ -1128,9 +1130,7 @@ function Dashboard() {
                     style={{ color: '#009231' }}
                     className="font-bold border-solid border-2 border-green-500 shadow-md rounded-lg"
                   >
-                    <span id="current-awards--tier-2">
-                      {getSecondTierRewards()}
-                    </span>{' '}
+                    <span id="current-awards--tier-2">{secondTierRewards}</span>{' '}
                     MNT
                   </div>
                 </td>
@@ -1142,7 +1142,10 @@ function Dashboard() {
                 className="border-solid border-2 border-green-500 shadow-md rounded-lg px-4 py-4 ml-4"
                 style={{ color: '#009231' }}
               >
-                <span id="totalAffiliateRewards">49,027</span> MNT
+                <span id="totalAffiliateRewards">
+                  {parseInt(firstTierRewards) + parseInt(secondTierRewards)}
+                </span>{' '}
+                MNT
               </span>
             </div>
           </section>
