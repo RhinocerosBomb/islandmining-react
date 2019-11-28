@@ -11,27 +11,6 @@ const request = require("request");
 var jwt = require("jsonwebtoken");
 const passport = require("passport");
 
-const getDateString = dateTime => {
-  const monthStrings = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec"
-  ];
-  const time = `${dateTime.getUTCHours()}:${dateTime.getUTCMinutes()}:${dateTime.getUTCSeconds()} UTC`;
-  const day = dateTime.getUTCDate();
-  const month = monthStrings[dateTime.getUTCMonth()];
-  const year = dateTime.getUTCFullYear();
-  return `${month} ${day}, ${year} ${time}`;
-};
 const findAffiliates = async affiliateProgram => {
   var totalFirstTierRewards = 0;
   var totalSecondTierRewards = 0;

@@ -13,7 +13,7 @@ import authBg from  "../../assets/demo/bg/auth-bg.jpg"
 export default function Auth() {
   return (
     <>
-      <div className="kt-grid kt-grid--ver kt-grid--root" style={{height: '100%'}}>
+      <div className={"kt-grid kt-grid--ver kt-grid--root"} style={{height: '100%'}}>
         <div
           id="kt_login"
           className="kt-grid kt-grid--hor kt-grid--root kt-login kt-login--v1"
