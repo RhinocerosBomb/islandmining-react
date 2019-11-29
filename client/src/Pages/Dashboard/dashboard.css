@@ -29,7 +29,7 @@ html {
   /* This defines what size our webpage is. */
   scroll-behavior: smooth;
   padding: 6em;
-  padding-top: 1em;
+  padding-top: 0;
   background-image: url(../../assets/img/misc/background.png);
   background-repeat: no-repeat;
   background-size: cover;
@@ -67,12 +67,21 @@ ul {
   line-height: 35px;
 }
 
+
 .heading-tertiary {
   font-family: 'Poppins', sans-serif;
   font-size: 1em;
   font-weight: 700;
   line-height: 35px;
   color: #3f3f3f;
+}
+
+.signup_icomply>a>h2 {
+  transition: all .2s;
+}
+
+.signup_icomply>a>h2:hover {
+  color: #14227A;
 }
 
 tr:not(:last-of-type) {
@@ -174,10 +183,11 @@ i {
   padding-right: 0;
   padding-left: 0;
   padding-top: 20px;
+  position: relative;
 }
 
 .navbarContainer {
-  padding-bottom: 10.4em;
+  padding-bottom: 5.4em;
 }
 
 .dashboardBar {

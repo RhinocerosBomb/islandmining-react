@@ -1,8 +1,8 @@
 import React from 'react';
 import Particles from 'react-particles-js';
+
 import FancyScrollAnimation from './FancyScrollAnimation';
 
-import './home.css';
 import bg_75 from '../../assets/demo/bg/bg-75.svg';
 import BitcoinPNG from '../../assets/img/misc/bitcoin.png';
 
@@ -69,139 +69,115 @@ function Hero() {
         <div className="row d-flex flex-wrap align-items-center">
           <div className="lqd-column col-lg-5 col-md-6">
             <div className="ld-fancy-heading mask-text text-uppercase">
-              {/* <h6
+                        {/*eslint-disable */}
+              <h6
                 className="font-size-20 ltr-sp-01 ca-initvalues-applied split-text-applied"
                 data-split-text="true"
                 data-custom-animations="true"
                 data-ca-options='{"triggerHandler":"inview", "animationTarget":".split-inner", "duration":"1600", "delay":100, "easing":"easeOutQuint", "direction":"forward", "initValues":{"translateY":60}, "animations":{"translateY":0}}'
                 data-split-options='{"type":"lines"}'
-              /> */}
+              />
+                        {/*eslint-enable */}
+
             </div>
-            <div className="ld-fancy-heading mask-text">
-              <h2
-                data-fittext="true"
-                data-fittext-options='{"compressor":0.55,"maxFontSize":"60", "minFontSize":"48"}'
-                data-split-text="true"
-                data-custom-animations="true"
-                data-ca-options='{"triggerHandler":"inview", "animationTarget":".split-inner", "duration":"1600", "startDelay":"200", "delay":"160", "easing":"easeOutQuint", "direction":"forward", "initValues":{"translateY":150}, "animations":{"translateY":0}}'
-                data-split-options='{"type":"lines"}'
-                style={{ fontSize: '60px' }}
-                className="ca-initvalues-applied lqd-animations-done split-text-applied"
-              >
-                <span className="ld-fh-txt">
-                  <FancyScrollAnimation classNames="appearBottomText">
-                    <div
-                      className="lqd-lines split-unit lqd-unit-animation-done"
-                      style={{
-                        display: 'block',
-                        textAlign: 'start',
-                        position: 'relative'
-                      }}
-                    >
-                      <span data-text=" Bringing" className="split-inner">
-                        <span className="split-txt"> Bringing</span>
-                      </span>
-                    </div>
-                    <div
-                      className="lqd-lines split-unit lqd-unit-animation-done"
-                      style={{
-                        display: 'block',
-                        textAlign: 'start',
-                        position: 'relative'
-                      }}
-                    >
-                      <span data-text="Mining into the" className="split-inner">
-                        <span className="split-txt">Mining into the</span>
-                      </span>
-                    </div>
-                    <div
-                      className="lqd-lines split-unit lqd-unit-animation-done"
-                      style={{
-                        display: 'block',
-                        textAlign: 'start',
-                        position: 'relative'
-                      }}
-                    >
-                      <span data-text="Mainstream" className="split-inner">
-                        <span className="split-txt">Mainstream</span>
-                      </span>
-                    </div>
-                  </FancyScrollAnimation>
-                </span>
-              </h2>
-            </div>
-            <div className="ld-fancy-heading mask-text mb-4">
-              <p
-                className="font-size-18 lh-165 ca-initvalues-applied lqd-animations-done split-text-applied"
-                data-split-text="true"
-                data-custom-animations="true"
-                data-ca-options='{"triggerHandler":"inview","animationTarget":".split-inner","duration":"1600","startDelay":"650","delay":"160","easing":"easeOutQuint","direction":"forward","initValues":{"translateY":60},"animations":{"translateY":0}}'
-                data-split-options='{"type":"lines"}'
-              >
-                <span className="ld-fh-txt">
-                  <FancyScrollAnimation classNames="appearBottomText">
-                    <div
-                      className="lqd-lines split-unit lqd-unit-animation-done"
-                      style={{
-                        display: 'block',
-                        textAlign: 'start',
-                        position: 'relative'
-                      }}
-                    >
-                      <span
-                        data-text="Island Mining is driving the next	generation of "
-                        className="split-inner"
+
+            <FancyScrollAnimation classNames="appearBottomCol">
+              <div className="ld-fancy-heading mask-text">
+                <h2
+                  style={{ fontSize: '60px' }}
+                  className="ca-initvalues-applied lqd-animations-done split-text-applied"
+                >
+                  <span className="ld-fh-txt">
+                      <div
+                        className="lqd-lines split-unit lqd-unit-animation-done"
+
                       >
-                        <span className="split-txt">
-                          <strong>Island Mining</strong> is driving the next
-                          generation of{' '}
+                        <span data-text=" Bringing" className="split-inner">
+                          <span className="split-txt"> Bringing</span>
                         </span>
-                      </span>
-                    </div>
-                    <div
-                      className="lqd-lines split-unit lqd-unit-animation-done"
-                      style={{
-                        display: 'block',
-                        textAlign: 'start',
-                        position: 'relative'
-                      }}
-                    >
-                      <span
-                        data-text="cryptocurrency mining by making it accessible to "
-                        className="split-inner"
+                      </div>
+                      <div
+                        className="lqd-lines split-unit lqd-unit-animation-done"
+
                       >
-                        <span className="split-txt">
-                          cryptocurrency mining by making it accessible to{' '}
+                        <span data-text="Mining into the" className="split-inner">
+                          <span className="split-txt">Mining into the</span>
                         </span>
-                      </span>
-                    </div>
-                    <div
-                      className="lqd-lines split-unit lqd-unit-animation-done"
-                      style={{
-                        display: 'block',
-                        textAlign: 'start',
-                        position: 'relative'
-                      }}
-                    >
-                      <span data-text="everyone." className="split-inner">
-                        <span className="split-txt">everyone.</span>
-                      </span>
-                    </div>
-                  </FancyScrollAnimation>
+                      </div>
+                      <div
+                        className="lqd-lines split-unit lqd-unit-animation-done"
+
+                      >
+                        <span data-text="Mainstream" className="split-inner">
+                          <span className="split-txt">Mainstream</span>
+                        </span>
+                      </div>
+                  </span>
+                </h2>
+              </div>
+            </FancyScrollAnimation>
+            <FancyScrollAnimation classNames="appearBottomCol">
+              <div className="ld-fancy-heading mask-text mb-4">
+                <span
+                  className="font-size-18 lh-165 ca-initvalues-applied lqd-animations-done split-text-applied"
+                  data-split-text="true"
+                  data-custom-animations="true"
+                  data-ca-options='{"triggerHandler":"inview","animationTarget":".split-inner","duration":"1600","startDelay":"650","delay":"160","easing":"easeOutQuint","direction":"forward","initValues":{"translateY":60},"animations":{"translateY":0}}'
+                  data-split-options='{"type":"lines"}'
+                >
+                  <span className="ld-fh-txt">
+                      <div
+                        className="lqd-lines split-unit lqd-unit-animation-done"
+
+                      >
+                        <span
+                          data-text="Island Mining is driving the next	generation of "
+                          className="split-inner"
+                        >
+                          <span className="split-txt">
+                            <strong>Island Mining</strong> is driving the next
+                            generation of{' '}
+                          </span>
+                        </span>
+                      </div>
+                      <div
+                        className="lqd-lines split-unit lqd-unit-animation-done"
+
+                      >
+                        <span
+                          data-text="cryptocurrency mining by making it accessible to "
+                          className="split-inner"
+                        >
+                          <span className="split-txt">
+                            cryptocurrency mining by making it accessible to{' '}
+                          </span>
+                        </span>
+                      </div>
+                      <div
+                        className="lqd-lines split-unit lqd-unit-animation-done"
+
+                      >
+                        <span data-text="everyone." className="split-inner">
+                          <span className="split-txt">everyone.</span>
+                        </span>
+                      </div>
+                  </span>
                 </span>
-              </p>
-            </div>
+              </div>
+            </FancyScrollAnimation>
+
+
+      <FancyScrollAnimation classNames="appearBottom">
             <div className="row">
               <div
                 className="lqd-column col-md-12 ca-initvalues-applied lqd-animations-done"
                 data-custom-animations="true"
                 data-ca-options='{"triggerHandler":"inview", "animationTarget":"all-childs", "duration":"1600", "startDelay":"1300", "delay":"160", "easing":"easeOutQuint", "direction":"forward", "initValues":{"translateY":40, "opacity":0}, "animations":{"translateY":0, "opacity":1}}'
               >
-                <FancyScrollAnimation classNames="appearBottom">
+
                   <a
-                    href="https://www.islandmining.io/register"
-                    className="btn btn-solid text-uppercase btn-md circle btn-bordered border-thin btn-gradient px-2 lqd-unit-animation-done"
-                    style={{ opacity: 1 }}
+                    href="./auth/register"
+                    className="btn btn-solid text-uppercase btn-md circle btn-bordered border-thin btn-gradient px-2"
                   >
                     <span>
                       <span className="btn-gradient-bg" />
@@ -240,16 +216,19 @@ function Hero() {
                   </a>
                   <a
                     href="https://docsend.com/view/y87qbwm"
-                    className="btn btn-naked text-uppercase lqd-unit-animation-done"
-                    style={{ opacity: 1 }}
+                    className="btn btn-naked text-uppercase"
                   >
                     <span>
                       <span className="btn-txt">Read the Whitepaper</span>
                     </span>
                   </a>
-                </FancyScrollAnimation>
+
               </div>
             </div>
+      </FancyScrollAnimation>
+
+
+
           </div>
         </div>
       </div>

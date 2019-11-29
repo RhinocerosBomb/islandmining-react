@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
 import { ParallaxProvider } from 'react-scroll-parallax';
 
@@ -12,11 +11,25 @@ import '../../assets/vendors/font-awesome/css/font-awesome.min.css';
 import '../../assets/theme-vendors.min.css';
 import '../../assets/vendors/theme.min.css';
 import '../../assets/vendors/themes/seo.css';
-import './home.css';
+import './animations.css';
 
 export default function() {
   const [showMenu, setShowMenu] = useState(false);
   const HTMLElem = useRef(document.documentElement);
+  const refs = {
+    miningcoinRef: useRef(null),
+    whitepaperRef: useRef(null),
+    islandMiningRef: useRef(null),
+    tokenSaleRef: useRef(null),
+    roadmapRef: useRef(null),
+    teamRef: useRef(null)
+  };
+
+  const scrollTo = target => {
+    refs[target].current.scrollIntoView({
+      behavior: 'smooth'
+    });
+  };
 
   useEffect(() => {
     if (showMenu) {
@@ -40,11 +53,15 @@ export default function() {
         data-mobile-nav-breakpoint="1199"
       >
         <div id="wrap" className={showMenu ? 'showMenu' : null}>
-          <Header showMenu={showMenu} setShowMenu={setShowMenu} />
-          <Body />
-          <Footer />
+          <Header
+            showMenu={showMenu}
+            setShowMenu={setShowMenu}
+            scrollTo={scrollTo}
+          />
+          <Body refs={refs}/>
+          <Footer scrollTo={scrollTo} />
         </div>
-        <NavBar showMenu={showMenu} setShowMenu={setShowMenu} />
+        <NavBar showMenu={showMenu} setShowMenu={setShowMenu} scrollTo={scrollTo}/>
       </div>
     </ParallaxProvider>
   );

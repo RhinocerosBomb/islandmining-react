@@ -8,6 +8,10 @@ function Countdown({classNames}) {
     }, 1000)
   );
 
+  useEffect(() => {
+    return () => clearInterval(countDown)
+  }, []);
+
   const calculateCountdown = () => {
     let diff =
       (Date.parse(new Date(countDownDate)) - Date.parse(new Date())) / 1000;

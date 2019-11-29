@@ -2,22 +2,19 @@ import React from 'react';
 import FancyScrollAnimation from './FancyScrollAnimation';
 import falcon_4000 from '../../assets/media/falcon-4000.png';
 import bg77 from '../../assets/demo/bg/bg-77.svg';
-
 import { Parallax } from 'react-scroll-parallax';
 
-
-function IslandMining() {
+function IslandMining({ islandMiningRef }) {
   return (
-
     <section
       className="vc_row pt-90 pb-20 bg-no-repeat"
       id="islandmining"
+      ref={islandMiningRef}
       style={{
         backgroundImage: `url(${bg77})`,
         backgroundPosition: '500% 0%'
       }}
     >
-
       <div className="container">
         <div className="row d-flex flex-wrap align-items-center">
           <div
@@ -25,30 +22,32 @@ function IslandMining() {
             data-custom-animations={false}
             data-ca-options='{"triggerHandler":"inview", "animationTarget":"all-childs", "duration":"1600", "delay":"160", "easing":"easeOutQuint", "direction":"forward", "initValues":{"translateY":30, "opacity":0}, "animations":{"translateY":0, "opacity":1}}'
           >
-            <header className="fancy-title pr-md-4">
-              <h6 className="text-uppercase">Cloud Mining</h6>
-              <h2>
-                <strong>start mining passively</strong> with Island Mining
-              </h2>
-            </header>
-
-            <p className="font-size-18 lh-15 mb-55">
-              Mining Coin (MNT) token holders share access to Island Mining’s
-              hashing power. MNT holders receive a percentage of hashing power
-              produced by our facility, based on how many MNT tokens they
-              currently hold.
-              <br />
-              <br />
-              Through IslandEX Exchange, trade cryptocurrency for fiat. Hold
-              cash at IslandEX or one of our affiliate banks and use a prepaid
-              debit card to easily spend earnings.
-            </p>
+            <div className="will-change">
+              <FancyScrollAnimation classNames="appearBlock">
+                <header className="fancy-title pr-md-4">
+                  <h6 className="text-uppercase animBlock-1">Cloud Mining</h6>
+                  <h2 className="animBlock-2">
+                    <strong>start mining passively</strong> with Island Mining
+                  </h2>
+                </header>
+                <p className="font-size-18 lh-15 mb-55 animBlock-3">
+                  Mining Coin (MNT) token holders share access to Island
+                  Mining’s hashing power. MNT holders receive a percentage of
+                  hashing power produced by our facility, based on how many MNT
+                  tokens they currently hold.
+                  <br />
+                  <br />
+                  Through IslandEX Exchange, trade cryptocurrency for fiat. Hold
+                  cash at IslandEX or one of our affiliate banks and use a
+                  prepaid debit card to easily spend earnings.
+                </p>{' '}
+              </FancyScrollAnimation>
+            </div>
           </div>
-          <div className="lqd-column col-md-3 col-md-offset-1">
 
-            <div
-              className="lqd-column-inner"
-            >
+          <div className="lqd-column col-md-3 col-md-offset-1">
+            <div className="lqd-column-inner">
+              <div className="lqd-column will-change">
                 <Parallax className="custom-class" y={[-10, 10]}>
                   <div className="iconbox text-left iconbox-round iconbox-lg iconbox-filled iconbox-filled iconbox-filled-hover iconbox-icon-image iconbox-shadow pt-50 pb-40 iconbox-icon-animating">
                     <div className="iconbox-icon-wrap">
@@ -110,9 +109,9 @@ function IslandMining() {
                     <div className="contents">
                       <h3>Cutting Edge Equipment</h3>
                       <p className="font-size-16 lh-165">
-                        Island Mining is constantly developing new ASIC machines,
-                        with efficiency as our top priority. Users will never be
-                        reliant on outdated miners.
+                        Island Mining is constantly developing new ASIC
+                        machines, with efficiency as our top priority. Users
+                        will never be reliant on outdated miners.
                       </p>
                     </div>
                   </div>
@@ -183,12 +182,12 @@ function IslandMining() {
                     </div>
                   </div>
                 </Parallax>
+              </div>
             </div>
           </div>
           <div className="lqd-column col-md-3">
-            <div
-              className="lqd-column-inner"
-            >
+            <div className="lqd-column-inner">
+              <div className="lqd-column will-change">
                 <Parallax className="custom-class" y={[10, -10]}>
                   <div className="iconbox text-left iconbox-round iconbox-lg iconbox-filled iconbox-filled iconbox-filled-hover iconbox-icon-image iconbox-shadow pt-50 pb-40 iconbox-icon-animating">
                     <div className="iconbox-icon-wrap">
@@ -252,8 +251,8 @@ function IslandMining() {
                       <p className="font-size-16 lh-165">
                         Island Mining currently has a Non-Banking Financial
                         Institution (NBFI) in Mongolia and a banking partner in
-                        Cayman Islands, which allow us to provide these services out
-                        of the gate.
+                        Cayman Islands, which allow us to provide these services
+                        out of the gate.
                       </p>
                     </div>
                   </div>
@@ -318,15 +317,15 @@ function IslandMining() {
                       <h3>Frictionless User Experience</h3>
                       <p className="font-size-16 lh-165">
                         Our partner institutions in Asia and Cayman work with
-                        IslandEX to provide banking services and prepaid debit cards
-                        to seamlessly convert and spend funds.
+                        IslandEX to provide banking services and prepaid debit
+                        cards to seamlessly convert and spend funds.
                       </p>
                     </div>
                   </div>
                 </Parallax>
+              </div>
             </div>
           </div>
-
         </div>
 
         <div
@@ -335,34 +334,41 @@ function IslandMining() {
         />
 
         <div className="row d-flex flex-wrap align-items-center">
+          {/*eslint-disable */}
           <a href="" className="col-md-5 col-sm-12">
             <img src={falcon_4000} alt="" />
           </a>
+          {/*eslint-enable */}
+
           <div
             data-custom-animations={false}
             data-ca-options='{"triggerHandler":"inview", "animationTarget":"all-childs", "duration":"1600", "delay":"160", "easing":"easeOutQuint", "direction":"forward", "initValues":{"translateY":30, "opacity":0}, "animations":{"translateY":0, "opacity":1}}'
             className="lqd-column col-md-5 col-sm-12 col-md-offset-1"
           >
-            <header className="fancy-title mb-50">
-              <FancyScrollAnimation className="appearHeader" childrenClassNames="animateHeaders">
-                <h6 className="text-uppercase">Mining Innovation</h6>
-                <h2>
-                we're creating the
-                <strong> next generation mining machine</strong>
-                </h2>
-              </FancyScrollAnimation>
-            </header>
+            <FancyScrollAnimation classNames="appearBlock">
+              <header className="fancy-title mb-50">
+                <div className="lqd-column will-change">
+                  <h6 className="text-uppercase animBlock-1">
+                    Mining Innovation
+                  </h6>
+                  <h2 className="animBlock-2">
+                    we're creating the
+                    <strong> next generation mining machine</strong>
+                  </h2>
+                </div>
+              </header>
 
-            <FancyScrollAnimation className="appearText" childrenClassNames="animateHeaders">
-              <p className="font-size-30 lh-105">
-              <i>Our mandate is to bring crypto mining into every home.</i>
-              </p>
+              <div className="lqd-column will-change">
+                <p className="font-size-30 lh-105 animBlock-3">
+                  <i>Our mandate is to bring crypto mining into every home.</i>
+                </p>
 
-              <p className="font-size-18 lh-15 mb-55">
-              Our liquid-immersion cooled mining machines are easy to use,
-              silent, and more energy efficient than existing machines on the
-              market.
-              </p>
+                <p className="font-size-18 lh-15 mb-55 animBlock-4">
+                  Our liquid-immersion cooled mining machines are easy to use,
+                  silent, and more energy efficient than existing machines on
+                  the market.
+                </p>
+              </div>
             </FancyScrollAnimation>
           </div>
         </div>

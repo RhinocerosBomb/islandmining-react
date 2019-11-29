@@ -1,11 +1,28 @@
-.appearBottom {
+
+.appearBottom{
   -webkit-animation-name: appearBottom;
   animation-name: appearBottom;
+  animation-duration: 1.6s;
+  opacity: 0;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+}
+
+.appearBlock .animBlock-1,.appearBlock .animBlock-2,.appearBlock .animBlock-3, .appearBlock .animBlock-4 {
+  -webkit-animation-name: appearHeader;
+  animation-name: appearHeader;
   animation-duration: 1.6s;
   opacity: 0;
   animation-fill-mode: forwards;
 }
 
+.appearBottomText{
+  -webkit-animation-name: appearBottomText;
+  animation-name: appearBottomText;
+  animation-duration: 1.6s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
 .appearBottomText .split-unit .split-inner {
   -webkit-animation-name: appearBottomText;
   animation-name: appearBottomText;
@@ -14,6 +31,35 @@
   animation-fill-mode: forwards;
 }
 
+.appearBottomCol{
+  -webkit-animation-name: appearBottomCol;
+  animation-name: appearBottomCol;
+  animation-duration: 1.6s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+.appearBottomCol .split-unit .split-inner {
+  -webkit-animation-name: appearBottomCol;
+  animation-name: appearBottomCol;
+  animation-duration: 1.6s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.appearHeader{
+  -webkit-animation-name: appearHeader;
+  animation-name: appearHeader;
+  animation-duration: 1.6s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+.appearHeader .lqd-column {
+  -webkit-animation-name: appearHeader;
+  animation-name: appearHeader;
+  animation-duration: 1.6s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
 .appearHeader .animateHeaders {
   -webkit-animation-name: appearHeader;
   animation-name: appearHeader;
@@ -23,8 +69,8 @@
 }
 
 .appearText .animateHeaders {
-  -webkit-animation-name: appearHeader;
-  animation-name: appearHeader;
+  -webkit-animation-name: appearText;
+  animation-name: appearText;
   animation-duration: 1.6s;
   opacity: 0;
   animation-fill-mode: forwards;
@@ -62,6 +108,36 @@
 }
 .appearBottomText .split-unit:nth-child(3) .split-inner {
   animation-delay: 0.3333333333s;
+}
+
+.appearBlock .animBlock-1 {
+  animation-delay: 0.0666666667s;
+}
+.appearBlock .animBlock-2 {
+  animation-delay: 0.2s;
+}
+.appearBlock .animBlock-3 {
+  animation-delay: 0.3333333333s;
+}
+
+.appearBlock .animBlock-4 {
+  animation-delay: 0.5333333333s;
+}
+
+.appearBottomText .onDiv,.appearBottomText .seDiv,.appearBottomText .thDiv{
+  -webkit-animation-name: appearBottomText;
+  animation-name: appearBottomText;
+  animation-duration: 1.6s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.appearBottom .lqd-column {
+  -webkit-animation-name: appearBottom;
+  animation-name: appearBottom;
+  animation-duration: 1.2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
 }
 
 .appearBottomCol .lqd-column {
@@ -362,6 +438,44 @@
   to {
     -webkit-transform: scale(1);
     transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+
+
+.appearLeft{
+  -webkit-animation-name: appearLeft;
+  animation-name: appearLeft;
+  animation-duration: 1.6s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes appearLeft {
+  from {
+    -webkit-transform: translateX(-30px);
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Standard syntax */
+@keyframes appearLeft {
+  from {
+    -webkit-transform: translateX(-30px);
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
     opacity: 1;
   }
 }

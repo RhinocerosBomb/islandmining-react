@@ -77,8 +77,8 @@ export function* saga() {
   });
 
   yield takeLatest(actionTypes.Logout, function* logoutSaga() {
+    yield history.replace('/');
     yield persistor.flush();
-    history.push('/');
   });
 
   yield takeLatest(actionTypes.UserRequested, function* userRequested() {

@@ -1,6 +1,4 @@
-import { persistReducer } from 'redux-persist';
-import { put, takeLatest } from 'redux-saga/effects';
-import { getUserByToken } from '../../crud/auth.crud';
+// import { put, takeLatest } from 'redux-saga/effects';
 
 export const actionTypes = {
     StoreUsers: '[Store Users] Action',
@@ -35,21 +33,4 @@ export const actions = {
 };
 
 export function* saga() {
-//   yield takeLatest(actionTypes.Login, function* loginSaga() {
-//     yield put(actions.requestUser());
-//   });
-
-//   yield takeLatest(actionTypes.Register, function* registerSaga() {
-//     yield put(actions.requestUser());
-//   });
-
-//   yield takeLatest(actionTypes.UserRequested, function* userRequested() {
-//     yield persistor.flush();
-//     const { data: user } = yield getUserByToken();
-//     yield put(actions.fulfillUser(user));
-//   });
-
-//   yield takeLatest(actionTypes.ReloadAuth, function* reloadAuth() {
-//     yield persistor.flush();
-//   });
 }

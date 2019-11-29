@@ -9,11 +9,11 @@ import Team from './Team';
 
 import bg39 from '../../assets/demo/bg/bg-39.jpg';
 
-function Body() {
+function Body({refs}) {
   return (
     <main id="content" className="content">
       <Hero />
-      <MiningCoin />
+      <MiningCoin miningcoinRef={refs.miningcoinRef} whitepaperRef={refs.whitepaperRef}/>
       <section
         className="vc_row pt-100 pb-100 bg-cover"
         style={{ backgroundImage: `url(${bg39})` }}
@@ -30,7 +30,7 @@ function Body() {
               </p>
 
               <a
-                href="https://www.islandmining.io/register"
+                href="/auth/register"
                 className="btn btn-solid circle border-none px-2 font-size-15 font-weight-bold btn-white text-hover-white"
               >
                 <span>
@@ -43,10 +43,10 @@ function Body() {
           </div>
         </div>
       </section>
-      <IslandMining />
-      <TokenOfferingDetails />
-      <Roadmap />
-      <Team />
+      <IslandMining islandMiningRef={refs.islandMiningRef}/>
+      <TokenOfferingDetails tokenSaleRef={refs.tokenSaleRef}/>
+      <Roadmap roadmapRef={refs.roadmapRef}/>
+      <Team teamRef={refs.teamRef}/>
 
     </main>
   );

@@ -104,8 +104,6 @@ router.get(
       }
     );
 
-    cryptoPrice.dateTime = getDateString(cryptoPrice.dateTime);
-
     res.json({
       // kycStatus,
       // userInformation,
