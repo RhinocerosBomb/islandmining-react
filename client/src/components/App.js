@@ -1,12 +1,11 @@
-import './app.css';
 import '../assets/css/tailwind.css';
 import React from 'react';
 import PublicRoutes from '../router';
 
-function App({ history }) {
+function App() {
   return (
-    <div className="site-content">
-      <PublicRoutes history={history} />
+    <div className="site-content" style={{ height: '100%' }}>
+      <PublicRoutes />
     </div>
   );
 }

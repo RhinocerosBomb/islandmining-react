@@ -32,7 +32,7 @@ function Login(props) {
           Don't have an account yet?
         </span>
         &nbsp;&nbsp;
-        <Link to="/auth/registration" className="kt-link kt-login__signup-link">
+        <Link to="/auth/register" className="kt-link kt-login__signup-link">
           Sign Up!
         </Link>
       </div>
@@ -101,16 +101,9 @@ function Login(props) {
                 className="kt-form"
                 onSubmit={handleSubmit}
               >
-                {status ? (
+                {status && (
                   <div role="alert" className="alert alert-danger">
                     <div className="alert-text">{status}</div>
-                  </div>
-                ) : (
-                  <div role="alert" className="alert alert-info">
-                    <div className="alert-text">
-                      Use account <strong>admin@demo.com</strong> and password{' '}
-                      <strong>demo</strong> to continue.
-                    </div>
                   </div>
                 )}
 

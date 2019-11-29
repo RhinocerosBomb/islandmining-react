@@ -1,25 +1,20 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import FancyScrollAnimation from './FancyScrollAnimation';
 
-import { Parallax } from 'react-scroll-parallax';
+import { Parallax, useController } from 'react-scroll-parallax';
 
 import whitepaper_sct from '../../assets/media/whitepaper-sct.jpg';
 import whitepaper_2nd from '../../assets/media/whitepaper-2nd.jpg';
 import bg76 from '../../assets/demo/bg/bg-76.svg';
 
+function MiningCoin({ miningcoinRef, whitepaperRef }) {
+  const { parallaxController } = useController();
+  useLayoutEffect(() => {
+    const handler = () => parallaxController.update();
+    window.addEventListener('load', handler);
+    return () => window.removeEventListener('load', handler);
+  }, [parallaxController]);
 
-const image1 =
-  "https://images.unsplash.com/photo-1498092651296-641e88c3b057?auto=format&fit=crop&w=1778&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D";
-  const insideStyles = {
-    background: "white",
-    padding: 20,
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%,-50%)"
-  };
-
-function MiningCoin() {
   return (
     <section
       className="vc_row bg-no-repeat pt-10 pb-150"
@@ -28,22 +23,12 @@ function MiningCoin() {
         backgroundImage: `url(${bg76})`,
         backgroundPosition: '-90% 80%'
       }}
+      ref={miningcoinRef}
     >
       <div className="container">
-        <div
-          className="row ca-initvalues-applied"
-          data-custom-animations="true"
-          data-ca-options='{"triggerHandler":"inview", "animationTarget":"all-childs", "duration":"1600", "delay":"160", "easing":"easeOutQuint", "initValues":{"translateY": 100, "opacity":0}, "animations":{"translateY": 0, "opacity":1}}'
-        >
-          <FancyScrollAnimation classNames="appearBottomCol">
-            <div
-              className="lqd-column col-md-12 mb-60 will-change"
-              style={{
-                transition: 'none 0s ease 0s',
-                transform: 'translateY(100px)',
-                opacity: 0
-              }}
-            >
+        <div className="row ca-initvalues-applied">
+          <FancyScrollAnimation classNames="appearBottomText">
+            <div className="lqd-column col-md-12 mb-60 will-change">
               <header className="fancy-title">
                 <h6 className="text-uppercase">Introducing Mining Coin</h6>
                 <h2>
@@ -51,14 +36,10 @@ function MiningCoin() {
                 </h2>
               </header>
             </div>
-            <div
-              className="lqd-column col-md-4 will-change"
-              style={{
-                transition: 'none 0s ease 0s',
-                transform: 'translateY(100px)',
-                opacity: 0
-              }}
-            >
+          </FancyScrollAnimation>
+
+          <FancyScrollAnimation classNames="appearBottomText">
+            <div className="lqd-column col-md-4 will-change onDiv">
               <div className="iconbox text-left iconbox-xl iconbox-icon-image iconbox-shadow border-radius-5 px-5 pt-40 pb-55 mr-md-4 iconbox-icon-animating">
                 <div className="iconbox-icon-wrap">
                   <span className="iconbox-icon-container mb-35">
@@ -140,14 +121,7 @@ function MiningCoin() {
                 </div>
               </div>
             </div>
-            <div
-              className="lqd-column col-md-4 will-change"
-              style={{
-                transition: 'none 0s ease 0s',
-                transform: 'translateY(100px)',
-                opacity: 0
-              }}
-            >
+            <div className="lqd-column col-md-4 will-change seDiv">
               <div className="iconbox text-left iconbox-xl iconbox-icon-image iconbox-shadow border-radius-5 px-5 pt-40 pb-55 mx-md-2 iconbox-icon-animating">
                 <div className="iconbox-icon-wrap">
                   <span className="iconbox-icon-container mb-45">
@@ -229,14 +203,7 @@ function MiningCoin() {
                 </div>
               </div>
             </div>
-            <div
-              className="lqd-column col-md-4 will-change"
-              style={{
-                transition: 'none 0s ease 0s',
-                transform: 'translateY(100px)',
-                opacity: 0
-              }}
-            >
+            <div className="lqd-column col-md-4 will-change thDiv">
               <div className="iconbox text-left iconbox-xl iconbox-icon-image iconbox-shadow border-radius-5 px-5 pt-40 pb-55 ml-md-4 iconbox-icon-animating">
                 <div className="iconbox-icon-wrap">
                   <span className="iconbox-icon-container mb-45">
@@ -327,6 +294,7 @@ function MiningCoin() {
         <div
           className="row d-flex flex-wrap align-items-center"
           id="whitepaper"
+          ref={whitepaperRef}
         >
           <div className="lqd-column col-md-6">
             <div
@@ -335,7 +303,6 @@ function MiningCoin() {
               data-ca-options='{"triggerHandler":"inview", "animationTarget":".liquid-img-group-single", "duration":"1600", "delay":"160", "easing":"easeOutQuint", "direction":"backward", "initValues":{"translateX":-85, "opacity":0}, "animations":{"translateX":0, "opacity":1}}'
             >
               <div className="liquid-img-group-inner">
-
                 <div
                   className="liquid-img-group-single is-in-view"
                   data-shadow-style="4"
@@ -343,18 +310,22 @@ function MiningCoin() {
                   data-inview="true"
                   data-animate-shadow="false"
                 >
-
-                <FancyScrollAnimation classNames="appearBottomCol">
-                  <div className="liquid-img-group-img-container">
-                    <div className="liquid-img-container-inner">
-                      <figure>
-                        <a href="https://docsend.com/view/y87qbwm">
-                          <img src={whitepaper_2nd} alt="Working with Ave" />
-                        </a>
-                      </figure>
+                  <FancyScrollAnimation classNames="appearLeft">
+                    <div className="lqd-column will-change">
+                      <div className="liquid-img-group-img-container ">
+                        <div className="liquid-img-container-inner">
+                          <figure>
+                            <a href="https://docsend.com/view/y87qbwm">
+                              <img
+                                src={whitepaper_2nd}
+                                alt="Working with Ave"
+                              />
+                            </a>
+                          </figure>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                        </FancyScrollAnimation>
+                  </FancyScrollAnimation>
                 </div>
                 <div
                   className="liquid-img-group-single is-in-view"
@@ -363,23 +334,28 @@ function MiningCoin() {
                   data-inview="true"
                   data-animate-shadow="true"
                 >
-                          <FancyScrollAnimation classNames="appearBottomCol">
-                  <div className="liquid-img-group-img-container">
-                    <div className="liquid-img-container-inner">
-                      <figure>
-                        <a href="https://docsend.com/view/y87qbwm">
-
-    <Parallax className="custom-class" y={[20, 0]}  x={[-2, 2]}>
-                          <img src={whitepaper_sct} alt="Working with Ave2" />
-</Parallax>
-                        </a>
-                      </figure>
+                  <FancyScrollAnimation classNames="appearLeft">
+                    <div className="lqd-column will-change">
+                      <div className="liquid-img-group-img-container">
+                        <div className="liquid-img-container-inner">
+                          <figure>
+                            <a href="https://docsend.com/view/y87qbwm">
+                              <Parallax
+                                className="custom-class"
+                                y={[20, 0]}
+                                x={[-2, 2]}
+                              >
+                                <img
+                                  src={whitepaper_sct}
+                                  alt="Working with Ave2"
+                                />
+                              </Parallax>
+                            </a>
+                          </figure>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                        </FancyScrollAnimation>
-
-
-
+                  </FancyScrollAnimation>
                 </div>
               </div>
             </div>
@@ -389,78 +365,80 @@ function MiningCoin() {
             data-ca-options='{"triggerHandler":"inview", "animationTarget":"all-childs", "duration":"1600", "delay":"160", "easing":"easeOutQuint", "direction":"forward", "initValues":{"translateY":30, "opacity":0}, "animations":{"translateY":0, "opacity":1}}'
             className="lqd-column col-md-5 col-md-offset-1 ca-initvalues-applied"
           >
-          <FancyScrollAnimation classNames="appearBottomCol">
-            <header className="fancy-title mb-50">
-              <h6 className="text-uppercase">Whitepaper</h6>
-              <h2
-                className="lh-1 mb-0"
-                data-fittext="true"
-                data-fittext-options='{"compressor":0.65, "maxFontSize":"72", "minFontSize":"48"}'
-                style={{ fontSize: '70.4615px' }}
-              >
-                <strong>passive</strong> mining
-              </h2>
-              <h2
-                className="lh-1 mb-0"
-                data-fittext="true"
-                data-fittext-options='{"compressor":0.65, "maxFontSize":"72", "minFontSize":"48"}'
-                style={{ fontSize: '70.4615px' }}
-              >
-                <strong>real</strong> value
-              </h2>
-            </header>
-            <p className="font-size-30 lh-105">
-              <i>
-                Mining shouldn't be difficult. That's why we created Mining
-                Coin.
-              </i>
-            </p>
-            <p className="font-size-18 lh-15 mb-55">
-              We help make cryptocurrency mining less scary by providing a
-              simple token that unlocks access to our mining facilities. When
-              you earn crypto, seamlessly trade it for fiat on our exchange or
-              use it to purchase specially designed mining machines for your own
-              home.
-            </p>
-            <a
-              href="https://docsend.com/view/y87qbwm"
-              className="btn btn-solid text-uppercase btn-md circle btn-bordered border-thin btn-gradient font-weight-bold px-2"
-            >
-              <span>
-                <span className="btn-gradient-bg" />
-                <span className="btn-txt">Whitepaper v2.07</span>
-                <span className="btn-gradient-bg btn-gradient-bg-hover" />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  xml_space="preserve"
-                  className="btn-gradient-border"
-                  width="100%"
-                  height="100%"
+            <FancyScrollAnimation classNames="appearBottomCol">
+              <div className="will-change">
+                <header className="fancy-title mb-50">
+                  <h6 className="text-uppercase">Whitepaper</h6>
+                  <h2
+                    className="lh-1 mb-0"
+                    data-fittext="true"
+                    data-fittext-options='{"compressor":0.65, "maxFontSize":"72", "minFontSize":"48"}'
+                    style={{ fontSize: '70.4615px' }}
+                  >
+                    <strong>passive</strong> mining
+                  </h2>
+                  <h2
+                    className="lh-1 mb-0"
+                    data-fittext="true"
+                    data-fittext-options='{"compressor":0.65, "maxFontSize":"72", "minFontSize":"48"}'
+                    style={{ fontSize: '70.4615px' }}
+                  >
+                    <strong>real</strong> value
+                  </h2>
+                </header>
+                <p className="font-size-30 lh-105">
+                  <i>
+                    Mining shouldn't be difficult. That's why we created Mining
+                    Coin.
+                  </i>
+                </p>
+                <p className="font-size-18 lh-15 mb-55">
+                  We help make cryptocurrency mining less scary by providing a
+                  simple token that unlocks access to our mining facilities.
+                  When you earn crypto, seamlessly trade it for fiat on our
+                  exchange or use it to purchase specially designed mining
+                  machines for your own home.
+                </p>
+                <a
+                  href="https://docsend.com/view/y87qbwm"
+                  className="btn btn-solid text-uppercase btn-md circle btn-bordered border-thin btn-gradient font-weight-bold px-2"
                 >
-                  <defs>
-                    <linearGradient
-                      id="svg-border-2"
-                      x1="0%"
-                      y1="0%"
-                      x2="100%"
-                      y2="0%"
+                  <span>
+                    <span className="btn-gradient-bg" />
+                    <span className="btn-txt">Whitepaper v2.07</span>
+                    <span className="btn-gradient-bg btn-gradient-bg-hover" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      xml_space="preserve"
+                      className="btn-gradient-border"
+                      width="100%"
+                      height="100%"
                     >
-                      <stop offset="0%" />
-                      <stop offset="100%" />
-                    </linearGradient>
-                  </defs>
-                  <rect
-                    x="0.5"
-                    y="0.5"
-                    rx="30"
-                    ry="30"
-                    width="100%"
-                    height="100%"
-                    stroke="url(#svg-border-2)"
-                  ></rect>
-                </svg>
-              </span>
-            </a>
+                      <defs>
+                        <linearGradient
+                          id="svg-border-2"
+                          x1="0%"
+                          y1="0%"
+                          x2="100%"
+                          y2="0%"
+                        >
+                          <stop offset="0%" />
+                          <stop offset="100%" />
+                        </linearGradient>
+                      </defs>
+                      <rect
+                        x="0.5"
+                        y="0.5"
+                        rx="30"
+                        ry="30"
+                        width="100%"
+                        height="100%"
+                        stroke="url(#svg-border-2)"
+                      ></rect>
+                    </svg>
+                  </span>
+                </a>
+              </div>
             </FancyScrollAnimation>
           </div>
         </div>

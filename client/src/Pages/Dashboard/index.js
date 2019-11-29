@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Countdown from '../../components/Countdown';
 import './dashboard.css';
 import '../../assets/css/tailwind.css';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { actions as userActions } from '../../store/ducks/auth.duck';
 import { actions as dashboardActions } from '../../store/ducks/dashboard.duck';
@@ -22,13 +23,18 @@ import miningcoin_symbol_1 from '../../assets/img/icon/miningcoin-symbol-1.png';
 function Dashboard() {
   const getCurrentTime = () => {
     const date = new Date();
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
     let period;
     if (hours > 12) {
       period = 'PM';
+      hours -= 12;
     } else {
       period = 'AM';
+    }
+
+    if (minutes < 10) {
+      minutes = '0' + minutes;
     }
 
     const toString = () => `${hours}:${minutes} ${period}`;
@@ -125,7 +131,7 @@ function Dashboard() {
         'Nov',
         'Dec'
       ];
-      const newDateTime = new Date(dateTime)
+      const newDateTime = new Date(dateTime);
       const time = `${newDateTime.getUTCHours()}:${newDateTime.getUTCMinutes()}:${newDateTime.getUTCSeconds()} UTC`;
       const day = newDateTime.getUTCDate();
       const month = monthStrings[newDateTime.getUTCMonth()];
@@ -220,7 +226,7 @@ function Dashboard() {
     dispatch(dashboardActions.dashboard());
 
     return () => clearInterval(clock);
-  }, [dispatch]);
+  }, [dispatch, timer.minutes]);
 
   useEffect(() => {
     if (user.cryptocurrencyAddresses.ethereumAddress) {
@@ -459,15 +465,7 @@ function Dashboard() {
               </div>
 
               <div className="mb-16 px-8 py-6 border-solid border-2 rounded-lg border-gray-500 shadow-lg flex flex-wrap content-center">
-                {/* <style>
-                    .signup_icomply>a>h2 {
-                        transition: all .2s;
-                    }
-
-                    .signup_icomply>a>h2:hover {
-                        color: #14227A;
-                    }
-                </style> */}
+                {/*eslint-disable */}
                 <a
                   id="registration-btn"
                   onClick={startKYC}
@@ -485,6 +483,7 @@ function Dashboard() {
                     </h2>
                   )}
                 </a>
+                {/*eslint-enable */}
               </div>
 
               <p>
@@ -755,6 +754,7 @@ function Dashboard() {
                   </form>
                   <small className="customContainer mx-auto text-center w-2/3 pt-8">
                     By validating your Ethereum address, you agree to the
+                    {/*eslint-disable */}
                     <a className="underline" href="">
                       Mining Coin Token Sale terms
                     </a>
@@ -762,6 +762,7 @@ function Dashboard() {
                     <a className="underline" href="">
                       privacy policy.
                     </a>
+                    {/*eslint-enable */}
                   </small>
                 </div>
                 {ethAddressAlert === 'valid' && (
@@ -1015,150 +1016,158 @@ function Dashboard() {
 
             <h3 className="heading-tertiary">Reward table(MNT)</h3>
             <table className="mx-auto mb-16">
-              <tr>
-                <th></th>
-                <th>up to $10,000</th>
-                <th>$10,000 - $50,000</th>
-                <th>> $50,000</th>
-              </tr>
-              <tr>
-                <td>1st tier referral:</td>
-                <td>
-                  <div
-                    style={{ color: '#5F5F5F' }}
-                    className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
-                  >
-                    <span id="11">
-                      {user.affiliateProgram.rewardTablePercentages[11]}
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    style={{ color: '#5F5F5F' }}
-                    className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
-                  >
-                    <span id="12">
-                      {user.affiliateProgram.rewardTablePercentages[12]}
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    style={{ color: '#5F5F5F' }}
-                    className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
-                  >
-                    <span id="13">
-                      {user.affiliateProgram.rewardTablePercentages[13]}
-                    </span>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>2nd tier referral:</td>
-                <td>
-                  <div
-                    style={{ color: '#5F5F5F' }}
-                    className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
-                  >
-                    <span id="21">
-                      {user.affiliateProgram.rewardTablePercentages[21]}
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    style={{ color: '#5F5F5F' }}
-                    className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
-                  >
-                    <span id="22">
-                      {user.affiliateProgram.rewardTablePercentages[22]}
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    style={{ color: '#5F5F5F' }}
-                    className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
-                  >
-                    <span id="23">
-                      {user.affiliateProgram.rewardTablePercentages[23]}
-                    </span>
-                  </div>
-                </td>
-              </tr>
+              <tbody>
+                <tr>
+                  <th></th>
+                  <th>up to $10,000</th>
+                  <th>$10,000 - $50,000</th>
+                  <th>> $50,000</th>
+                </tr>
+                <tr>
+                  <td>1st tier referral:</td>
+                  <td>
+                    <div
+                      style={{ color: '#5F5F5F' }}
+                      className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
+                    >
+                      <span id="11">
+                        {user.affiliateProgram.rewardTablePercentages[11]}
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    <div
+                      style={{ color: '#5F5F5F' }}
+                      className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
+                    >
+                      <span id="12">
+                        {user.affiliateProgram.rewardTablePercentages[12]}
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    <div
+                      style={{ color: '#5F5F5F' }}
+                      className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
+                    >
+                      <span id="13">
+                        {user.affiliateProgram.rewardTablePercentages[13]}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2nd tier referral:</td>
+                  <td>
+                    <div
+                      style={{ color: '#5F5F5F' }}
+                      className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
+                    >
+                      <span id="21">
+                        {user.affiliateProgram.rewardTablePercentages[21]}
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    <div
+                      style={{ color: '#5F5F5F' }}
+                      className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
+                    >
+                      <span id="22">
+                        {user.affiliateProgram.rewardTablePercentages[22]}
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    <div
+                      style={{ color: '#5F5F5F' }}
+                      className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
+                    >
+                      <span id="23">
+                        {user.affiliateProgram.rewardTablePercentages[23]}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
             </table>
 
             <h3 className="heading-tertiary">Your referrals</h3>
             <table className="mx-auto mb-16">
-              <tr>
-                <th></th>
-                <th># referred</th>
-                <th>total MNT purchased</th>
-                <th>your current reward</th>
-              </tr>
-              <tr>
-                <td>1st tier referral:</td>
-                <td>
-                  <div
-                    style={{ color: '#5F5F5F' }}
-                    className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
-                  >
-                    {user.affiliateProgram.referrals}
-                  </div>
-                </td>
-                <td>
-                  <div
-                    style={{ color: '#5F5F5F' }}
-                    className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
-                  >
-                    <span id="total-purchased--tier-1">
-                      {((user.totalFirstTierRewards || 0) / 0.06).toFixed(1)}
-                    </span>
-                    MNT
-                  </div>
-                </td>
-                <td>
-                  <div
-                    style={{ color: '#009231' }}
-                    className="font-bold border-solid border-2 border-green-500 shadow-md rounded-lg"
-                  >
-                    <span id="current-awards--tier-1">{firstTierRewards}</span>{' '}
-                    MNT
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>2nd tier referral:</td>
-                <td>
-                  <div
-                    style={{ color: '#5F5F5F' }}
-                    className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
-                  >
-                    {user.affiliateProgram.referrals_2}
-                  </div>
-                </td>
-                <td>
-                  <div
-                    style={{ color: '#5F5F5F' }}
-                    className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
-                  >
-                    <span id="total-purchased--tier-2">
-                      {((user.totalSecondTierRewards || 0) / 0.06).toFixed(1)}
-                    </span>
-                    MNT
-                  </div>
-                </td>
-                <td>
-                  <div
-                    style={{ color: '#009231' }}
-                    className="font-bold border-solid border-2 border-green-500 shadow-md rounded-lg"
-                  >
-                    <span id="current-awards--tier-2">{secondTierRewards}</span>{' '}
-                    MNT
-                  </div>
-                </td>
-              </tr>
+              <tbody>
+                <tr>
+                  <th></th>
+                  <th># referred</th>
+                  <th>total MNT purchased</th>
+                  <th>your current reward</th>
+                </tr>
+                <tr>
+                  <td>1st tier referral:</td>
+                  <td>
+                    <div
+                      style={{ color: '#5F5F5F' }}
+                      className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
+                    >
+                      {user.affiliateProgram.referrals}
+                    </div>
+                  </td>
+                  <td>
+                    <div
+                      style={{ color: '#5F5F5F' }}
+                      className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
+                    >
+                      <span id="total-purchased--tier-1">
+                        {((user.totalFirstTierRewards || 0) / 0.06).toFixed(1)}
+                      </span>
+                      MNT
+                    </div>
+                  </td>
+                  <td>
+                    <div
+                      style={{ color: '#009231' }}
+                      className="font-bold border-solid border-2 border-green-500 shadow-md rounded-lg"
+                    >
+                      <span id="current-awards--tier-1">
+                        {firstTierRewards}
+                      </span>{' '}
+                      MNT
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2nd tier referral:</td>
+                  <td>
+                    <div
+                      style={{ color: '#5F5F5F' }}
+                      className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
+                    >
+                      {user.affiliateProgram.referrals_2}
+                    </div>
+                  </td>
+                  <td>
+                    <div
+                      style={{ color: '#5F5F5F' }}
+                      className="font-bold border-solid border-2 border-gray-600 shadow-md rounded-lg"
+                    >
+                      <span id="total-purchased--tier-2">
+                        {((user.totalSecondTierRewards || 0) / 0.06).toFixed(1)}
+                      </span>
+                      MNT
+                    </div>
+                  </td>
+                  <td>
+                    <div
+                      style={{ color: '#009231' }}
+                      className="font-bold border-solid border-2 border-green-500 shadow-md rounded-lg"
+                    >
+                      <span id="current-awards--tier-2">
+                        {secondTierRewards}
+                      </span>{' '}
+                      MNT
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
             </table>
             <div className="text-center font-bold">
               Total Affiliate Rewards{' '}

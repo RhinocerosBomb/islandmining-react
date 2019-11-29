@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import logo_sq from '../../assets/media/logo_sq.png';
 import bg40 from '../../assets/demo/bg/bg-40.jpg';
-function Footer() {
+function Footer({ scrollTo }) {
+  const [email, setEmail] = useState('');
   return (
     <footer
       className="main-footer pt-50 pb-50"
@@ -13,8 +14,9 @@ function Footer() {
           <div className="lqd-column col-md-3 col-sm-6">
             <div className="d-flex justify-content-center flex-column">
               <figure className="text-center mb-4">
-                <img src={logo_sq} alt="Virtus" className="m-auto"/>
+                <img src={logo_sq} alt="Virtus" className="m-auto" />
               </figure>
+              {/*eslint-disable */}
               <ul className="social-icon social-icon-lg d-flex justify-content-center">
                 <li>
                   <a href="#" target="_blank">
@@ -40,22 +42,52 @@ function Footer() {
             </h3>
             <ul className="lqd-custom-menu reset-ul font-size-14 lh-2">
               <li className="mb-1">
-                <a href="#miningcoin">Mining Coin</a>
+                <a
+                  onClick={() => scrollTo('miningcoinRef')}
+                  style={{ cursor: 'pointer' }}
+                >
+                  Mining Coin
+                </a>
               </li>
               <li className="mb-1">
-                <a href="#whitepaper">Whitepaper</a>
+                <a
+                  onClick={() => scrollTo('whitepaperRef')}
+                  style={{ cursor: 'pointer' }}
+                >
+                  Whitepaper
+                </a>
               </li>
               <li className="mb-1">
-                <a href="#islandmining">What We Do</a>
+                <a
+                  onClick={() => scrollTo('islandMiningRef')}
+                  style={{ cursor: 'pointer' }}
+                >
+                  What We Do
+                </a>
               </li>
               <li className="mb-1">
-                <a href="#works">Token Sale</a>
+                <a
+                  onClick={() => scrollTo('tokenSaleRef')}
+                  style={{ cursor: 'pointer' }}
+                >
+                  Token Sale
+                </a>
               </li>
               <li className="mb-1">
-                <a href="#roadmap">Roadmap</a>
+                <a
+                  onClick={() => scrollTo('roadmapRef')}
+                  style={{ cursor: 'pointer' }}
+                >
+                  Roadmap
+                </a>
               </li>
               <li className="mb-1">
-                <a href="#team">Team</a>
+                <a
+                  onClick={() => scrollTo('teamRef')}
+                  style={{ cursor: 'pointer' }}
+                >
+                  Team
+                </a>
               </li>
               <li className="mb-1">
                 <a href="#">Contact</a>
@@ -80,6 +112,7 @@ function Footer() {
               <li className="mb-1">
                 <a href="#">KY1-1003</a>
               </li>
+              {/*eslint-enable */}
             </ul>
           </div>
           <div className="lqd-column col-md-3 col-sm-6">
@@ -107,27 +140,14 @@ function Footer() {
                   </label>
                   <input
                     type="email"
-                    value=""
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
                     name="email"
                     className="email input-email w-100"
                     id="mce-EMAIL"
                     placeholder="email address"
                     required=""
                   />
-                  <div
-                    style={{
-                      position: 'absolute',
-                      left: '-5000px',
-                      ariaHidden: 'true'
-                    }}
-                  >
-                    <input
-                      type="text"
-                      name="b_bce954e7f6aba08eb6414eff1_59f6b8c7f9"
-                      tabIndex="-1"
-                      value=""
-                    />
-                  </div>
                   <div className="clear mt-30">
                     <button className="btn btn-solid circle btn-bordered border-thin btn-gradient px-3">
                       <span>

@@ -4,10 +4,11 @@ import FancyScrollAnimation from './FancyScrollAnimation';
 
 import bg40 from '../../assets/demo/bg/bg-40.jpg';
 
-function Roadmap() {
+function Roadmap({roadmapRef}) {
   return (
     <section
       id="roadmap"
+      ref={roadmapRef}
       className="roadmap vc_row pt-50 pb-50 mt-50 mb-50 bg-cover"
       data-parallax={true}
       data-parallax-options='{"parallaxBG":false}'

@@ -10,14 +10,17 @@ import './admin.css';
 const App = () => {
   const [userTab, setUserTab] = useState(true);
   const dispatch = useDispatch();
+  
   const {
     admin: { users }
   } = useSelector(state => state.rootReducer);
+
   useEffect(() => {
     getUsers().then(response => {
       dispatch(actions.storeUsers(response.data.users));
     });
-  }, []);
+  }, [dispatch]);
+
   return (
     <div className="container">
       <h1>Admin Panel</h1>

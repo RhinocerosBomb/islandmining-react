@@ -11,9 +11,9 @@ import samir_sq from '../../assets/media/Samir-SQ.jpg';
 // import self_hosted_video_demo from '../../assets/media/self-hosted-video-demo.jpg';
 import sergelen_sq from '../../assets/media/Sergelen-SQ.jpg';
 
-function Team() {
+function Team({teamRef}) {
     return (
-      <section id="team" className="vc_row pt-20 pb-80">
+      <section id="team" className="vc_row pt-20 pb-80" ref={teamRef}>
         <div className="container">
           <div className="row">
             <div className="lqd-column col-md-6 col-md-offset-3 mb-70">

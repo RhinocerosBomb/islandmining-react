@@ -3,14 +3,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { store, history } from './store/store';
+import { store } from './store/store';
 
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
 const env = {
-  network: process.env.REACT_APP_ETH_NETWORK || 'development', // Default to Ganache CLI
-  history
+  network: process.env.REACT_APP_ETH_NETWORK || 'development' // Default to Ganache CLI
 };
 
 ReactDOM.render(
